@@ -1,0 +1,844 @@
+{
+  "supportedVersions": [
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "defaultVersion": 18,
+  "sections": {
+    "client_backends": {
+      "title": "Client Backends",
+      "desc": "Dedicated backend processes spawned to serve active client database connections.",
+      "docsUrl": "https://www.postgresql.org/docs/current/connect-estab.html"
+    },
+    "query_planning": {
+      "title": "Query Planning",
+      "desc": "Query optimizer module producing execution plans from parsed SQL.",
+      "docsUrl": "https://www.postgresql.org/docs/current/planner-optimizer.html"
+    },
+    "query_execution": {
+      "title": "Query Execution",
+      "desc": "Executor engine processing plan nodes and allocating work memory.",
+      "docsUrl": "https://www.postgresql.org/docs/current/executor.html"
+    },
+    "shared_buffers": {
+      "title": "Shared Buffers",
+      "desc": "Primary shared memory buffer cache storing database table and index pages.",
+      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-MEMORY"
+    },
+    "slru_caches": {
+      "title": "SLRU Caches",
+      "desc": "Simple LRU caches tracking transaction commit logs (clog, multixact, subtrans).",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html"
+    },
+    "postmaster": {
+      "title": "Postmaster Process",
+      "desc": "Master supervisor process handling initialization, authentication, and process forks.",
+      "docsUrl": "https://www.postgresql.org/docs/current/server-start.html"
+    },
+    "bg_workers": {
+      "title": "Background Workers",
+      "desc": "Dynamic background processes executing parallel queries and background tasks.",
+      "docsUrl": "https://www.postgresql.org/docs/current/bgworker.html"
+    },
+    "autovacuum_workers": {
+      "title": "Autovacuum",
+      "desc": "Processes removing dead tuples and updating table planner statistics.",
+      "docsUrl": "https://www.postgresql.org/docs/current/routine-vacuuming.html"
+    },
+    "indexes_usage": {
+      "title": "Indexes Usage",
+      "desc": "Index access counters and structural health metrics (B-Tree, GIN, GiST, BRIN).",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html"
+    },
+    "tables_usage": {
+      "title": "Tables Usage",
+      "desc": "Table access metrics, sequential scan rates, and tuple mutation counters.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html"
+    },
+    "buffers_io": {
+      "title": "Buffer IO & Statistics Subsystem",
+      "desc": "Disk I/O subsystem tracking reads, writes, and buffer pool operations (pg_stat_io).",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html"
+    },
+    "wal": {
+      "title": "Write-Ahead Log (WAL)",
+      "desc": "Transaction logging engine ensuring ACID durability (pg_stat_wal).",
+      "docsUrl": "https://www.postgresql.org/docs/current/wal-intro.html"
+    },
+    "logger": {
+      "title": "Logger Process",
+      "desc": "Process capturing error messages and server activity into log files.",
+      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-logging.html"
+    },
+    "replication": {
+      "title": "Replication",
+      "desc": "Publish-subscribe subsystem streaming decoded logical data changes.",
+      "docsUrl": "https://www.postgresql.org/docs/current/logical-replication.html"
+    },
+    "wal_sender": {
+      "title": "WAL Sender Process",
+      "desc": "Streams WAL record bytes to streaming replication standby nodes.",
+      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-replication.html#RUNTIME-CONFIG-REPLICATION-SENDER"
+    },
+    "wal_archiver": {
+      "title": "WAL Archiver Process",
+      "desc": "Executes archive commands to store completed WAL segments in backup storage.",
+      "docsUrl": "https://www.postgresql.org/docs/current/continuous-archiving.html"
+    },
+    "bg_writer": {
+      "title": "Background Writer",
+      "desc": "Flushes dirty buffers to disk gradually to minimize checkpoint spikes.",
+      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-BACKGROUND-WRITER"
+    },
+    "checkpointer": {
+      "title": "Checkpointer Process",
+      "desc": "Creates periodic checkpoints flushing dirty pages to disk (pg_stat_checkpointer).",
+      "docsUrl": "https://www.postgresql.org/docs/current/wal-configuration.html"
+    },
+    "network": {
+      "title": "Network Layer",
+      "desc": "TCP/IP or Unix socket interface handling client communications.",
+      "docsUrl": "https://www.postgresql.org/docs/current/connect-estab.html"
+    },
+    "storage": {
+      "title": "Storage System",
+      "desc": "Underlying file system and physical block storage devices.",
+      "docsUrl": "https://www.postgresql.org/docs/current/storage.html"
+    },
+    "wal_receiver": {
+      "title": "WAL Receiver Process",
+      "desc": "Receives WAL stream from primary instance on standby replicas.",
+      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-replication.html#RUNTIME-CONFIG-REPLICATION-STANDBY"
+    },
+    "recovery_process": {
+      "title": "Recovery Process",
+      "desc": "Replays WAL records during crash recovery or standby replay.",
+      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-wal.html#RUNTIME-CONFIG-WAL-RECOVERY-TARGET"
+    },
+    "data_files": {
+      "title": "Tables / Indexes Data Files",
+      "desc": "Physical data relation files, TOAST tables, and tablespace directories.",
+      "docsUrl": "https://www.postgresql.org/docs/current/storage-file-layout.html"
+    }
+  },  "items": [
+    {
+      "name": "pg_stat_ssl",
+      "sinceVersion": "9.5",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "client_backends",
+        "network"
+      ],
+      "desc": "Shows SSL connection details for active client backends.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-SSL-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_activity",
+      "sinceVersion": "7.2",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "client_backends",
+        "postmaster",
+        "bg_workers"
+      ],
+      "desc": "Active backend processes, queries, execution states, and wait events.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_backend_memory_contexts",
+      "sinceVersion": "14",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "client_backends",
+        "query_execution"
+      ],
+      "desc": "Detailed memory context allocations per backend process.",
+      "docsUrl": "https://www.postgresql.org/docs/current/view-pg-backend-memory-contexts.html",
+      "kind": "view"
+    },
+    {
+      "name": "EXPLAIN / EXPLAIN ANALYZE",
+      "sinceVersion": "6.0",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "query_planning",
+        "query_execution"
+      ],
+      "desc": "Displays query execution plans and runtime execution metrics.",
+      "docsUrl": "https://www.postgresql.org/docs/current/sql-explain.html",
+      "kind": "function"
+    },
+    {
+      "name": "pg_stat_statements",
+      "sinceVersion": "8.4",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "query_execution",
+        "query_planning"
+      ],
+      "desc": "Tracks execution statistics of all SQL statements executed.",
+      "docsUrl": "https://www.postgresql.org/docs/current/pgstatstatements.html",
+      "kind": "view",
+      "extension": "pg_stat_statements"
+    },
+    {
+      "name": "pg_stat_user_functions",
+      "sinceVersion": "8.4",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "query_execution"
+      ],
+      "desc": "Execution statistics for user-defined SQL/PLpgSQL functions.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-USER-FUNCTIONS-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_prepared_xacts",
+      "sinceVersion": "8.1",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "client_backends",
+        "wal"
+      ],
+      "desc": "Information on prepared transactions (two-phase commit).",
+      "docsUrl": "https://www.postgresql.org/docs/current/view-pg-prepared-xacts.html",
+      "kind": "view"
+    },
+    {
+      "name": "pg_locks",
+      "sinceVersion": "7.3",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "client_backends",
+        "query_execution"
+      ],
+      "desc": "Active lock information held or waited on by processes.",
+      "docsUrl": "https://www.postgresql.org/docs/current/view-pg-locks.html",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_progress_create_index",
+      "sinceVersion": "12",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "indexes_usage",
+        "query_execution"
+      ],
+      "desc": "Real-time progress reporting for INDEX creation and REINDEX.",
+      "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#CREATE-INDEX-PROGRESS-REPORTING",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_all_indexes",
+      "sinceVersion": "7.2",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "indexes_usage"
+      ],
+      "desc": "Index usage statistics and index scan counters.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ALL-INDEXES-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_all_tables",
+      "sinceVersion": "7.2",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "tables_usage"
+      ],
+      "desc": "Table access statistics (sequential scans, tuple updates, deletes).",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ALL-TABLES-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_statio_all_indexes",
+      "sinceVersion": "7.2",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "indexes_usage",
+        "buffers_io"
+      ],
+      "desc": "Disk I/O vs buffer cache hits for index blocks.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STATIO-ALL-INDEXES-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_statio_all_tables",
+      "sinceVersion": "7.2",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "tables_usage",
+        "buffers_io"
+      ],
+      "desc": "Disk I/O vs buffer cache hits for table blocks.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STATIO-ALL-TABLES-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_statio_all_sequences",
+      "sinceVersion": "7.2",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "tables_usage",
+        "buffers_io"
+      ],
+      "desc": "Buffer and disk I/O metrics for sequence objects.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STATIO-ALL-SEQUENCES-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_is_wal_replay_paused()",
+      "sinceVersion": "14",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "wal",
+        "recovery_process"
+      ],
+      "desc": "Returns true if WAL replay during recovery is currently paused.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-CONTROLS-SIGNAL-TABLE",
+      "kind": "function"
+    },
+    {
+      "name": "pg_current_wal_lsn()",
+      "sinceVersion": "8.2",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "wal"
+      ],
+      "desc": "Returns the current WAL write Log Sequence Number (LSN). Renamed from pg_current_xlog_location() in PG10",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-BACKUP",
+      "kind": "function"
+    },
+    {
+      "name": "pg_wal_lsn_diff()",
+      "sinceVersion": "9.2",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "wal",
+        "replication"
+      ],
+      "desc": "Calculates byte difference between two LSN positions. Renamed from pg_xlog_location_diff() in PG10",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-BACKUP-TABLE",
+      "kind": "function"
+    },
+    {
+      "name": "pg_ls_logdir()",
+      "sinceVersion": "10",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "logger"
+      ],
+      "desc": "Lists files inside the log directory of the PostgreSQL server.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-GENFILE",
+      "kind": "function"
+    },
+    {
+      "name": "pg_current_logfile()",
+      "sinceVersion": "10",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "logger"
+      ],
+      "desc": "Returns path of current log file written by Logger process.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-GENFILE",
+      "kind": "function"
+    },
+    {
+      "name": "pg_replication_slots",
+      "sinceVersion": "9.4",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "replication",
+        "wal_sender"
+      ],
+      "desc": "Status of physical and logical replication slots.",
+      "docsUrl": "https://www.postgresql.org/docs/current/view-pg-replication-slots.html",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_replication_slots",
+      "sinceVersion": "14",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "replication",
+        "wal_sender"
+      ],
+      "desc": "Performance statistics and spill counters for replication slots.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-REPLICATION-SLOTS-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_replication",
+      "sinceVersion": "9.1",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "wal_sender",
+        "replication"
+      ],
+      "desc": "Real-time monitoring of WAL Sender processes and replication lag.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-REPLICATION-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_subscription",
+      "sinceVersion": "10",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "replication",
+        "wal_receiver"
+      ],
+      "desc": "Subscriber-side metrics for logical replication subscriptions.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-SUBSCRIPTION",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_subscription_stats",
+      "sinceVersion": "15",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "replication",
+        "wal_receiver"
+      ],
+      "desc": "Error tracking and apply statistics for logical subscriptions.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-SUBSCRIPTION-STATS",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_wal_receiver",
+      "sinceVersion": "9.6",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "wal_receiver",
+        "recovery_process"
+      ],
+      "desc": "Real-time status of the active WAL Receiver process.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-WAL-RECEIVER-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_archiver",
+      "sinceVersion": "9.4",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "wal_archiver"
+      ],
+      "desc": "Statistics for the WAL Archiver process operations.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ARCHIVER-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_ls_archive_statusdir()",
+      "sinceVersion": "10",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "wal_archiver"
+      ],
+      "desc": "Lists files in pg_wal/archive_status directory.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-GENFILE",
+      "kind": "function"
+    },
+    {
+      "name": "pg_buffercache",
+      "sinceVersion": "8.1",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "shared_buffers"
+      ],
+      "desc": "Inspects individual buffer headers in Shared Buffers cache.",
+      "docsUrl": "https://www.postgresql.org/docs/current/pgbuffercache.html",
+      "kind": "view",
+      "extension": "pg_buffercache"
+    },
+    {
+      "name": "pg_stat_wal",
+      "sinceVersion": "14",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "wal"
+      ],
+      "desc": "Detailed WAL activity stats (records, bytes, sync times, write calls).",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-WAL-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_io",
+      "sinceVersion": "16",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "buffers_io",
+        "shared_buffers"
+      ],
+      "desc": "Granular I/O statistics broken down by backend, target and operation.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-IO-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_buffercache_summary()",
+      "sinceVersion": "17",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "shared_buffers",
+        "data_files"
+      ],
+      "desc": "Fast aggregated summary of Shared Buffers usage states.",
+      "docsUrl": "https://www.postgresql.org/docs/current/pgbuffercache.html",
+      "kind": "function"
+    },
+    {
+      "name": "pg_buffercache_usage_counts()",
+      "sinceVersion": "17",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "shared_buffers",
+        "buffers_io"
+      ],
+      "desc": "Distribution histogram of usage counts for cached blocks.",
+      "docsUrl": "https://www.postgresql.org/docs/current/pgbuffercache.html",
+      "kind": "function",
+      "extension": "pg_buffercache"
+    },
+    {
+      "name": "pg_stat_checkpointer",
+      "sinceVersion": "17",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "checkpointer"
+      ],
+      "desc": "Dedicated stats view for Checkpointer process activity.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-CHECKPOINTER-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_recovery_prefetch",
+      "sinceVersion": "15",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "recovery_process",
+        "wal"
+      ],
+      "desc": "Prefetching performance metrics during WAL recovery.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-RECOVERY-PREFETCH-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_shmem_allocations",
+      "sinceVersion": "14",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "shared_buffers",
+        "postmaster"
+      ],
+      "desc": "Shared memory allocations made by main processes.",
+      "docsUrl": "https://www.postgresql.org/docs/current/view-pg-shmem-allocations.html",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_slru",
+      "sinceVersion": "13",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "slru_caches"
+      ],
+      "desc": "I/O statistics for Simple LRU (SLRU) caches.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-SLRU-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_slru_extended",
+      "sinceVersion": "19",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "slru_caches"
+      ],
+      "desc": "Extended hit/miss ratios and access metrics for SLRU caches.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-SLRU-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_database",
+      "sinceVersion": "7.2",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "client_backends",
+        "data_files"
+      ],
+      "desc": "Database-level metrics (commits, rollbacks, disk reads, tuple counts).",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-DATABASE-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_progress_vacuum",
+      "sinceVersion": "9.6",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "autovacuum_workers"
+      ],
+      "desc": "Real-time progress reporting for active VACUUM operations.",
+      "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#VACUUM-PROGRESS-REPORTING",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_progress_analyze",
+      "sinceVersion": "13",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "autovacuum_workers",
+        "query_planning"
+      ],
+      "desc": "Real-time progress reporting for active ANALYZE commands.",
+      "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#ANALYZE-PROGRESS-REPORTING",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_progress_repack",
+      "sinceVersion": "19",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "autovacuum_workers",
+        "query_planning"
+      ],
+      "desc": "Real-time progress reporting for active ANALYZE commands.",
+      "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#REPACK-PROGRESS-REPORTING",
+      "kind": "view"
+    },
+    {
+      "name": "pg_ls_waldir()",
+      "sinceVersion": "10",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "wal",
+        "storage"
+      ],
+      "desc": "Lists WAL log files in pg_wal directory.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-GENFILE",
+      "kind": "function"
+    },
+    {
+      "name": "pg_walfile_name()",
+      "sinceVersion": "10",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "wal"
+      ],
+      "desc": "Converts WAL LSN position to corresponding WAL file name.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-BACKUP",
+      "kind": "function"
+    },
+    {
+      "name": "pg_last_wal_receive_lsn()",
+      "sinceVersion": "10",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "wal_receiver",
+        "wal"
+      ],
+      "desc": "Latest WAL LSN received and flushed by WAL Receiver.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-BACKUP",
+      "kind": "function"
+    },
+    {
+      "name": "pg_last_wal_replay_lsn()",
+      "sinceVersion": "10",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "recovery_process",
+        "wal"
+      ],
+      "desc": "Latest WAL LSN replayed during startup/standby recovery.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-BACKUP",
+      "kind": "function"
+    },
+    {
+      "name": "pg_stat_bgwriter",
+      "sinceVersion": "8.3",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "bg_writer",
+        "checkpointer"
+      ],
+      "desc": "Activity statistics for Background Writer (and Checkpointer pre-PG17).",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-BGWRITER-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_progress_basebackup",
+      "sinceVersion": "13",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "wal_sender",
+        "storage"
+      ],
+      "desc": "Progress monitoring of streaming base backups.",
+      "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#BASEBACKUP-PROGRESS-REPORTING",
+      "kind": "view"
+    },
+    {
+      "name": "pgstattuple",
+      "sinceVersion": "7.2",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "data_files",
+        "tables_usage"
+      ],
+      "desc": "Tuple-level bloat, dead tuple counts, and free space analysis.",
+      "docsUrl": "https://www.postgresql.org/docs/current/pgstattuple.html",
+      "kind": "function",
+      "extension": "pgstattuple"
+    },
+    {
+      "name": "pg_tablespace_size()",
+      "sinceVersion": "8.1",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "data_files",
+        "storage"
+      ],
+      "desc": "Total disk space used by a tablespace.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-DBSIZE",
+      "kind": "function"
+    },
+    {
+      "name": "pg_database_size()",
+      "sinceVersion": "8.1",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "data_files",
+        "storage"
+      ],
+      "desc": "Total disk space occupied by a database.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-DBSIZE",
+      "kind": "function"
+    },
+    {
+      "name": "pg_total_relation_size()",
+      "sinceVersion": "8.1",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "data_files"
+      ],
+      "desc": "Total disk space of a table (including TOAST and indexes).",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-DBSIZE",
+      "kind": "function"
+    },
+    {
+      "name": "pg_relation_size()",
+      "sinceVersion": "8.1",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "data_files"
+      ],
+      "desc": "Disk size of main table fork file.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-DBSIZE",
+      "kind": "function"
+    },
+    {
+      "name": "pg_indexes_size()",
+      "sinceVersion": "9.0",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "indexes_usage",
+        "data_files"
+      ],
+      "desc": "Total disk space occupied by all indexes on a table.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-DBSIZE",
+      "kind": "function"
+    },
+    {
+      "name": "pg_ls_tmpdir()",
+      "sinceVersion": "12",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "storage",
+        "query_execution"
+      ],
+      "desc": "Lists temporary files generated during query execution.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-GENFILE",
+      "kind": "function"
+    },
+    {
+      "name": "pg_stat_lock",
+      "sinceVersion": "19",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "client_backends",
+        "query_execution"
+      ],
+      "desc": "Cluster-wide per-lock-type statistics (waits, wait time, fastpath).",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-LOCK-VIEW",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_autovacuum_scores",
+      "sinceVersion": "19",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "autovacuum_workers"
+      ],
+      "desc": "Per-table autovacuum priority scores used to order autovacuum work.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-AUTOVACUUM-SCORES-VIEW",
+      "kind": "view"
+    }
+  ]
+}
