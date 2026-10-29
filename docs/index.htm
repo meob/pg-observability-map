@@ -222,11 +222,11 @@
     </header>
 
     <!-- Main Content Grid -->
-    <main class="flex-1 max-w-[1750px] w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 gap-4">
+    <main class="flex-1 max-w-[1750px] w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:h-[calc(100vh-140px)] lg:overflow-hidden">
         
         <!-- Left Sidebar: Functions / Views Part 1 -->
-        <aside class="lg:col-span-3 flex flex-col gap-4 order-2 lg:order-1">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex-1 flex flex-col shadow-lg min-h-0">
+        <aside class="lg:col-span-3 flex flex-col gap-4 order-2 lg:order-1 lg:h-full">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex-1 flex flex-col shadow-lg min-h-0 h-full">
                 <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                         <i class="fa-solid fa-list-check text-sky-400"></i> Client, Query, WAL & Replication
@@ -240,9 +240,9 @@
         </aside>
 
         <!-- Center Diagram Area -->
-        <section class="lg:col-span-6 flex flex-col gap-3 order-1 lg:order-2">
+        <section class="lg:col-span-6 flex flex-col gap-3 order-1 lg:order-2 lg:h-full lg:overflow-hidden">
             
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 relative shadow-xl">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 relative shadow-xl flex-1 min-h-0 overflow-y-auto">
                 <!-- Diagram Title Banner -->
                 <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-800/80">
                     <div class="flex items-center gap-2">
@@ -367,7 +367,7 @@
             </div>
 
             <!-- Detail Info Panel -->
-            <div id="infoPanel" class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex items-start gap-3 text-xs h-[84px] min-h-[84px] overflow-y-auto shadow-lg">
+            <div id="infoPanel" class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex items-start gap-3 text-xs h-[84px] min-h-[84px] overflow-y-auto shadow-lg flex-shrink-0">
                 <div class="p-2 rounded-lg bg-slate-800 text-sky-400 mt-0.5">
                     <i class="fa-solid fa-circle-info text-base"></i>
                 </div>
@@ -379,8 +379,8 @@
         </section>
 
         <!-- Right Sidebar: Functions / Views Part 2 -->
-        <aside class="lg:col-span-3 flex flex-col gap-4 order-3">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex-1 flex flex-col shadow-lg min-h-0">
+        <aside class="lg:col-span-3 flex flex-col gap-4 order-3 lg:h-full">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex-1 flex flex-col shadow-lg min-h-0 h-full">
                 <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                         <i class="fa-solid fa-list-check text-purple-400"></i> Memory, Buffers, Storage & Metrics
