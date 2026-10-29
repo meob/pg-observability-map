@@ -23,8 +23,7 @@ hover or click any element to inspect bidirectionally linked PostgreSQL statisti
 - Bidirectional linking between architecture cards and system stats
 - Direct links to `postgresql.org/docs` on each item
 - Search across views/functions
-- Deep linking via `?ver=` and `?sel=`
-- Adjustable side lists height via `?lists=` (e.g. `?lists=380` pixels, `?lists=35vh`, or `?lists=full`)
+- Deep linking via `?ver=`, `?sel=`, `?mode=` (`dim` or `hide`), and `?lists=` (e.g. `?lists=380`, `?lists=35vh`, or `?lists=full`)
 
 ### How to read
 

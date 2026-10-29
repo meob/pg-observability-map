@@ -44,6 +44,10 @@ function parseDeepLink() {
         if (PG_SUPPORTED_VERSIONS.includes(ver)) {
             currentTargetVersion = ver;
         }
+        const mode = params.get('mode');
+        if (mode === 'dim' || mode === 'hide') {
+            displayMode = mode;
+        }
         const sel = params.get('sel');
         const lists = params.get('lists');
         if (lists) {
@@ -68,6 +72,7 @@ function updateDeepLink() {
     try {
         const url = new URL(window.location.href);
         url.searchParams.set('ver', currentTargetVersion);
+        url.searchParams.set('mode', displayMode);
         if (listsMaxHeight && listsMaxHeight !== 'full') {
             // keep numeric/units as stored (strip px if just number stored differently)
             if (listsMaxHeight.endsWith('px') && /^[0-9]+px$/.test(listsMaxHeight)) {
@@ -206,10 +211,18 @@ function renderLists() {
         }
     });
 
+    if (searchQuery && leftCount === 0 && rightCount === 0) {
+        const emptyEl = document.createElement('div');
+        emptyEl.className = 'text-center text-slate-500 text-[11px] py-4';
+        emptyEl.textContent = 'No items match current search/filter';
+        leftListEl.appendChild(emptyEl);
+    }
+
     leftCountEl.textContent = `${leftCount} items`;
     rightCountEl.textContent = `${rightCount} items`;
 
     activeVerHeaderBadgeEl.textContent = `v14 — v${currentTargetVersion}`;
+    applyListsHeight();
 }
 
 function highlightItem(item) {
@@ -367,6 +380,7 @@ document.querySelectorAll('.arch-card').forEach(card => {
 versionSelectEl.addEventListener('change', (e) => {
     currentTargetVersion = parseInt(e.target.value, 10);
     renderLists();
+    applyListsHeight();
     if (selectedItem) clearHighlightIfNoSelection();
     updateDeepLink();
 });
@@ -378,6 +392,7 @@ modeDimBtn.addEventListener('click', () => {
     modeHideBtn.classList.remove('bg-slate-700', 'text-sky-300');
     modeHideBtn.classList.add('text-slate-400');
     renderLists();
+    updateDeepLink();
 });
 
 modeHideBtn.addEventListener('click', () => {
@@ -387,6 +402,7 @@ modeHideBtn.addEventListener('click', () => {
     modeDimBtn.classList.remove('bg-slate-700', 'text-sky-300');
     modeDimBtn.classList.add('text-slate-400');
     renderLists();
+    updateDeepLink();
 });
 
 searchInput.addEventListener('input', (e) => {
@@ -397,6 +413,7 @@ searchInput.addEventListener('input', (e) => {
         clearSearchBtn.classList.add('hidden');
     }
     renderLists();
+    applyListsHeight();
 });
 
 clearSearchBtn.addEventListener('click', () => {
@@ -404,6 +421,7 @@ clearSearchBtn.addEventListener('click', () => {
     searchQuery = '';
     clearSearchBtn.classList.add('hidden');
     renderLists();
+    applyListsHeight();
 });
 
 resetBtn.addEventListener('click', () => {
