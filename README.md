@@ -24,6 +24,7 @@ hover or click any element to inspect bidirectionally linked PostgreSQL statisti
 - Direct links to `postgresql.org/docs` on each item
 - Search across views/functions
 - Deep linking via `?ver=` and `?sel=`
+- Adjustable side lists height via `?lists=` (e.g. `?lists=380` pixels, `?lists=35vh`, or `?lists=full`)
 
 ### How to read
 

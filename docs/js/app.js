@@ -11,6 +11,7 @@ let currentTargetVersion = DEFAULT_PG_VERSION;
 let displayMode = 'hide'; // 'dim' | 'hide'
 let searchQuery = '';
 let selectedItem = null;
+let listsMaxHeight = null;
 
 // DOM elements
 const versionSelectEl = document.getElementById('versionSelect');
@@ -44,6 +45,17 @@ function parseDeepLink() {
             currentTargetVersion = ver;
         }
         const sel = params.get('sel');
+        const lists = params.get('lists');
+        if (lists) {
+            const listsLower = lists.trim().toLowerCase();
+            if (listsLower === 'full') {
+                listsMaxHeight = 'full';
+            } else if (/^[0-9]+$/.test(lists.trim())) {
+                listsMaxHeight = lists.trim() + 'px';
+            } else if (/^[0-9]+(px|vh|vw|em|rem|%)$/.test(lists.trim())) {
+                listsMaxHeight = lists.trim();
+            }
+        }
         if (sel) {
             // Will be applied after data load
             return sel;
@@ -56,6 +68,18 @@ function updateDeepLink() {
     try {
         const url = new URL(window.location.href);
         url.searchParams.set('ver', currentTargetVersion);
+        if (listsMaxHeight && listsMaxHeight !== 'full') {
+            // keep numeric/units as stored (strip px if just number stored differently)
+            if (listsMaxHeight.endsWith('px') && /^[0-9]+px$/.test(listsMaxHeight)) {
+                url.searchParams.set('lists', listsMaxHeight.replace('px', ''));
+            } else {
+                url.searchParams.set('lists', listsMaxHeight);
+            }
+        } else if (listsMaxHeight === 'full') {
+            url.searchParams.set('lists', 'full');
+        } else {
+            url.searchParams.delete('lists');
+        }
         if (typeof selectedItem === 'object' && selectedItem && selectedItem.name) {
             url.searchParams.set('sel', selectedItem.name);
         } else if (typeof selectedItem === 'string') {
@@ -89,6 +113,27 @@ function initVersionSelector() {
     if (versionSelectEl.value != currentTargetVersion) {
         versionSelectEl.value = currentTargetVersion;
     }
+}
+
+function applyListsHeight() {
+    try {
+        if (!leftListEl || !rightListEl) return;
+        if (listsMaxHeight && listsMaxHeight !== 'full') {
+            leftListEl.style.maxHeight = listsMaxHeight;
+            rightListEl.style.maxHeight = listsMaxHeight;
+            leftListEl.classList.remove('flex-1');
+            rightListEl.classList.remove('flex-1');
+            leftListEl.classList.add('flex-none');
+            rightListEl.classList.add('flex-none');
+        } else {
+            leftListEl.style.maxHeight = '';
+            rightListEl.style.maxHeight = '';
+            leftListEl.classList.remove('flex-none');
+            rightListEl.classList.remove('flex-none');
+            leftListEl.classList.add('flex-1');
+            rightListEl.classList.add('flex-1');
+        }
+    } catch (e) {}
 }
 
 function renderLists() {
@@ -416,6 +461,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
     initVersionSelector();
     renderLists();
+    applyListsHeight();
     if (selFromLink) {
         const item = FUNCS_DATA.find(f => f.name === selFromLink);
         if (item) {
