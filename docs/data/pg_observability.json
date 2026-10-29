@@ -190,7 +190,7 @@
       "desc": "Tracks execution statistics of all SQL statements executed.",
       "docsUrl": "https://www.postgresql.org/docs/current/pgstatstatements.html",
       "kind": "view",
-      "extension": "pg_stat_statements"
+      "extension": "pgstatstatements"
     },
     {
       "name": "pg_stat_user_functions",
@@ -481,7 +481,7 @@
       "desc": "Inspects individual buffer headers in Shared Buffers cache.",
       "docsUrl": "https://www.postgresql.org/docs/current/pgbuffercache.html",
       "kind": "view",
-      "extension": "pg_buffercache"
+      "extension": "pgbuffercache"
     },
     {
       "name": "pg_stat_wal",
@@ -519,7 +519,8 @@
       ],
       "desc": "Fast aggregated summary of Shared Buffers usage states.",
       "docsUrl": "https://www.postgresql.org/docs/current/pgbuffercache.html",
-      "kind": "function"
+      "kind": "function",
+      "extension": "pgbuffercache"
     },
     {
       "name": "pg_buffercache_usage_counts()",
@@ -533,7 +534,7 @@
       "desc": "Distribution histogram of usage counts for cached blocks.",
       "docsUrl": "https://www.postgresql.org/docs/current/pgbuffercache.html",
       "kind": "function",
-      "extension": "pg_buffercache"
+      "extension": "pgbuffercache"
     },
     {
       "name": "pg_stat_checkpointer",

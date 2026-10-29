@@ -25,6 +25,14 @@ hover or click any element to inspect bidirectionally linked PostgreSQL statisti
 - Search across views/functions
 - Deep linking via `?ver=` and `?sel=`
 
+### How to read
+
+- **Views**: shown in `sky-300` (e.g. `pg_stat_*`), **Functions**: in `emerald-300`
+- **NEW in X**: introduced in that PostgreSQL version
+- **REMOVED in X**: removed starting from that version
+- **Lock icon**: not available in the selected target version (use Highlight/Filter mode)
+- **Requires extension**: item comes from an extension (links to its docs)
+
 ---
 
 ## 📂 Structure

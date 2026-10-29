@@ -226,14 +226,14 @@
         
         <!-- Left Sidebar: Functions / Views Part 1 -->
         <aside class="lg:col-span-3 flex flex-col gap-4 order-2 lg:order-1">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex-1 flex flex-col shadow-lg">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex-1 flex flex-col shadow-lg min-h-0">
                 <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                         <i class="fa-solid fa-list-check text-sky-400"></i> Client, Query, WAL & Replication
                     </h2>
                     <span id="leftCount" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">0 items</span>
                 </div>
-                <div id="leftList" class="space-y-1.5 overflow-y-auto max-h-[calc(100vh-230px)] pr-1 text-xs">
+                <div id="leftList" class="space-y-1.5 overflow-y-auto flex-1 min-h-0 pr-1 text-xs">
                     <!-- Populated dynamically -->
                 </div>
             </div>
@@ -367,39 +367,27 @@
             </div>
 
             <!-- Detail Info Panel -->
-            <div id="infoPanel" class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex items-start gap-3 text-xs min-h-[75px] shadow-lg">
+            <div id="infoPanel" class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex items-start gap-3 text-xs h-[84px] min-h-[84px] overflow-y-auto shadow-lg">
                 <div class="p-2 rounded-lg bg-slate-800 text-sky-400 mt-0.5">
                     <i class="fa-solid fa-circle-info text-base"></i>
                 </div>
-                <div class="flex-1">
+                <div class="flex-1 min-w-0">
                     <h3 id="infoTitle" class="font-bold text-slate-200">Select a view, function, or architectural component</h3>
                     <p id="infoDesc" class="text-slate-400 mt-0.5">Hover or click any element to inspect bidirectionally linked PostgreSQL statistics, process roles, and version support.</p>
                 </div>
-            </div>
-
-            <!-- Legend -->
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-2 text-[10px] text-slate-400 flex flex-wrap items-center gap-3 shadow-lg">
-                <span class="font-semibold text-slate-300 uppercase tracking-wider">Legend:</span>
-                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-sky-400"></span> Selected/Highlighted</span>
-                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-slate-500"></span> Dimmed (other)</span>
-                <span class="flex items-center gap-1.5"><span class="px-1 rounded bg-slate-700 text-slate-400"><i class="fa-solid fa-lock text-[8px]"></i></span> Not available in selected version</span>
-                <span class="flex items-center gap-1.5"><span class="px-1 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40">REMOVED in X</span> Removed in version</span>
-                <span class="flex items-center gap-1.5"><span class="px-1 rounded badge-ver-14">NEW in X</span> Introduced</span>
-                <span class="flex items-center gap-1.5"><span class="text-sky-300 font-mono">pg_stat_*</span> Views</span>
-                <span class="flex items-center gap-1.5"><span class="text-emerald-300 font-mono">pg_*(...)</span> Functions</span>
             </div>
         </section>
 
         <!-- Right Sidebar: Functions / Views Part 2 -->
         <aside class="lg:col-span-3 flex flex-col gap-4 order-3">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex-1 flex flex-col shadow-lg">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex-1 flex flex-col shadow-lg min-h-0">
                 <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                         <i class="fa-solid fa-list-check text-purple-400"></i> Memory, Buffers, Storage & Metrics
                     </h2>
                     <span id="rightCount" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">0 items</span>
                 </div>
-                <div id="rightList" class="space-y-1.5 overflow-y-auto max-h-[calc(100vh-230px)] pr-1 text-xs">
+                <div id="rightList" class="space-y-1.5 overflow-y-auto flex-1 min-h-0 pr-1 text-xs">
                     <!-- Populated dynamically -->
                 </div>
             </div>
