@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
+<!--
+  ANALYTICS: If you fork this repository, please remove this script or replace the 'data-website-id' with your own Umami ID.
+-->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="9722ae9e-6667-4675-aca2-46e44e59366c"></script>
+
 <link rel="icon" href="glider18.png" />
 <link href="https://www.meo.bogliolo.name/about.htm" rel="me author" />
-<link rel="icon" href="../images/bdrop.png" />
 <link rel="canonical" href="https://meob.github.io/pg-observability-map/" />
 <meta name="author" content="Meo Bogliolo" />
 <script type="application/ld+json">
@@ -33,15 +37,9 @@
       "sameAs": "https://www.postgresql.org"
     }
   ],
-  "keywords": "PostgreSQL, Architecture, Statistics, PGstats.dev"
+  "keywords": "PostgreSQL, Architecture, Statistics, Observability, PGstats.dev"
 }
 </script>
-
-<!-- 
-  ANALYTICS: If you fork this repository, please remove this script or replace the 'data-website-id' with your own Umami ID.
--->
-<script defer src="https://cloud.umami.is/script.js" data-website-id="9722ae9e-6667-4675-aca2-46e44e59366c"></script>
-
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=0.8">
@@ -155,6 +153,9 @@
         .badge-ver-17 { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
         .badge-ver-18 { background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); }
         .badge-ver-19 { background: rgba(20, 184, 166, 0.2); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.3); }
+
+        /* Unsupported Version Badges Color */
+        .badge-ver-20 { background: rgba(239, 68,  68, 0.2); color: #f87171; border: 1px solid rgba(239, 68,  68, 0.3); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col bg-slate-950 text-slate-100 antialiased selection:bg-sky-500 selection:text-white">
@@ -170,7 +171,7 @@
                     <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
                         PostgreSQL Observability Map
                         <span id="activeVerHeaderBadge" class="text-xs px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/30 font-mono">
-                            v14 — v19
+                            v14 ... v19
                         </span>
                     </h1>
                     <p class="text-xs text-slate-400">Interactive architectural map of system stats, views & functions</p>

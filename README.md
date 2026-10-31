@@ -11,7 +11,7 @@ with version-aware filtering and direct links to official documentation.
 
 ## 🌐 Live Dashboard & Usage
 
-Published on GitHub Pages: 👉  **[https://meob.github.io/pg-observability-map/](https://meob.github.io/pg-observability-map/)**
+Published on GitHub Pages: 👉  **[https://meob.github.io/pg-observability-map/](https://meob.github.io/pg-observability-map/?lists=720&ver=18&mode=hide)**
 
 Select a view, function, or architectural component,
 hover or click any element to inspect bidirectionally linked PostgreSQL statistics, process roles, and version support.
@@ -19,11 +19,11 @@ hover or click any element to inspect bidirectionally linked PostgreSQL statisti
 ### Features
 
 - Interactive diagram of PostgreSQL internals
-- Version filter (PG 14 - 19), with "Highlight" or "Filter" mode
+- Version filter, with "Highlight" or "Filter" mode
 - Bidirectional linking between architecture cards and system stats
 - Direct links to `postgresql.org/docs` on each item
 - Search across views/functions
-- Deep linking via `?ver=`, `?sel=`, `?mode=` (`dim` or `hide`), and `?lists=` (e.g. `?lists=380`, `?lists=35vh`, or `?lists=full`)
+- Deep linking via `?ver=`, `?sel=`, `?mode=` (`dim` or `hide`), and `?lists=` (e.g. `?lists=720`, `?lists=35vh`, or `?lists=full`)
 
 ### How to read
 
@@ -40,9 +40,9 @@ hover or click any element to inspect bidirectionally linked PostgreSQL statisti
 ```
 docs/
 ├── index.htm                    # Main page
-├── js/app.js                    # App logic
+├── js/app.js                    # Application logic
 ├── data/pg_observability.json   # Data
-└── glider.png                   # favicon
+└── glider18.png                 # favicon
 ```
 
 ### Data
@@ -66,6 +66,9 @@ python3 -m http.server 8000
 
 Open [http://localhost:8000](http://localhost:8000).
 
+If you publish this page, please remove the analytics script or replace the `data-website-id` with your own Umami ID.
+Umami functions without cookies and processes no personal data, no cookie consent banner is required.
+
 
 ### Customizing
 
@@ -84,7 +87,7 @@ This project was developed through iterative collaboration with generative AI to
 ## 🔗 Links and References
 The original project and the live version are curated by Meo.
 - [Your PostgreSQL Stinks!](https://www.meo.bogliolo.name/white/unix/trans.htm#post) - PostgreSQL Release Overview.
-- [Personal Website (EN)](https://www.meo.bogliolo.name/en/)
+- [Meo's Personal Website (EN)](https://www.meo.bogliolo.name/en/)
 
 External references:
 - [Official documentation (PostgreSQL)](https://www.postgresql.org/docs/current/internals.html) 
