@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.8">
+<meta name="description" content="Interactive architectural map of PostgreSQL observability views, functions, processes, and system statistics.">
 <!--
   ANALYTICS: If you fork this repository, please remove this script or replace the 'data-website-id' with your own Umami ID.
 -->
@@ -15,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "PostgreSQL Observability",
-  "inLanguage": "en-EN",
+  "inLanguage": "en",
   "description": "PostgreSQL Observability Architectural Map",
   "author": {
     "@type": "Person",
@@ -28,7 +31,7 @@
   "dependencies": "PostgreSQL",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://www.meo.bogliolo.name/white/oracle/pgstats.htm"
+    "@id": "https://meob.github.io/pg-observability-map/"
   },
   "about": [
     {
@@ -41,8 +44,6 @@
 }
 </script>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=0.8">
 <title>PostgreSQL Observability Architectural Map</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -158,10 +159,10 @@
         .badge-ver-20 { background: rgba(239, 68,  68, 0.2); color: #f87171; border: 1px solid rgba(239, 68,  68, 0.3); }
     </style>
 </head>
-<body class="min-h-screen flex flex-col bg-slate-950 text-slate-100 antialiased selection:bg-sky-500 selection:text-white">
+<body class="min-h-screen lg:h-screen lg:overflow-hidden flex flex-col bg-slate-950 text-slate-100 antialiased selection:bg-sky-500 selection:text-white">
 
     <!-- Header Navigation -->
-    <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-50">
+    <header class="shrink-0 border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-50">
         <div class="max-w-[1750px] mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center gap-3">
                 <div class="p-2.5 bg-pgblue-600 rounded-xl text-white shadow-lg shadow-pgblue-900/50">
@@ -224,10 +225,10 @@
     </header>
 
     <!-- Main Content Grid -->
-    <main class="flex-1 max-w-[1750px] w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:h-[calc(100vh-140px)] lg:overflow-hidden">
+    <main class="flex-1 max-w-[1750px] w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-1 gap-4 lg:min-h-0 lg:overflow-hidden">
         
         <!-- Left Sidebar: Functions / Views Part 1 -->
-        <aside class="lg:col-span-3 flex flex-col gap-4 order-2 lg:order-1 lg:h-full">
+        <aside class="lg:col-span-3 flex flex-col gap-4 order-2 lg:order-1 lg:h-full min-h-0">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex-1 flex flex-col shadow-lg min-h-0 h-full">
                 <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
@@ -242,9 +243,9 @@
         </aside>
 
         <!-- Center Diagram Area -->
-        <section class="lg:col-span-6 flex flex-col gap-3 order-1 lg:order-2 lg:h-full">
+        <section class="lg:col-span-6 flex flex-col gap-3 order-1 lg:order-2 lg:h-full min-h-0">
             
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 relative shadow-xl overflow-y-auto max-h-[calc(100vh-300px)]">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 relative shadow-xl overflow-y-auto flex-1 min-h-0">
                 <!-- Diagram Title Banner -->
                 <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-800/80">
                     <div class="flex items-center gap-2">
@@ -369,7 +370,7 @@
             </div>
 
             <!-- Detail Info Panel -->
-            <div id="infoPanel" class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex items-start gap-3 text-xs h-[84px] min-h-[84px] overflow-y-auto shadow-lg flex-shrink-0">
+            <div id="infoPanel" class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex items-start gap-3 text-xs h-[84px] min-h-[84px] overflow-y-auto shadow-lg shrink-0">
                 <div class="p-2 rounded-lg bg-slate-800 text-sky-400 mt-0.5">
                     <i class="fa-solid fa-circle-info text-base"></i>
                 </div>
@@ -381,7 +382,7 @@
         </section>
 
         <!-- Right Sidebar: Functions / Views Part 2 -->
-        <aside class="lg:col-span-3 flex flex-col gap-4 order-3 lg:h-full">
+        <aside class="lg:col-span-3 flex flex-col gap-4 order-3 lg:h-full min-h-0">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex-1 flex flex-col shadow-lg min-h-0 h-full">
                 <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
@@ -398,7 +399,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800 bg-slate-900/50 py-3 text-center text-xs text-slate-500">
+    <footer class="shrink-0 border-t border-slate-800 bg-slate-900/50 py-3 text-center text-xs text-slate-500">
         <p>PostgreSQL Observability Architectural Interactive Map &bull; v.1.0.0 &bull; Source code: <a href="https://github.com/meob/pg-observability-map" target="_blank" rel="noopener noreferrer">GitHub</a></p>
     </footer>
 

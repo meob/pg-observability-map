@@ -16,8 +16,6 @@ let listsMaxHeight = null;
 // DOM elements
 const versionSelectEl = document.getElementById('versionSelect');
 const activeVerHeaderBadgeEl = document.getElementById('activeVerHeaderBadge');
-const mermaidVerBadgeEl = document.getElementById('mermaidVerBadge');
-const mermaidModalVerEl = document.getElementById('mermaidModalVer');
 const modeDimBtn = document.getElementById('modeDimBtn');
 const modeHideBtn = document.getElementById('modeHideBtn');
 const leftListEl = document.getElementById('leftList');
@@ -123,21 +121,12 @@ function initVersionSelector() {
 function applyListsHeight() {
     try {
         if (!leftListEl || !rightListEl) return;
-        if (listsMaxHeight && listsMaxHeight !== 'full') {
-            leftListEl.style.maxHeight = listsMaxHeight;
-            rightListEl.style.maxHeight = listsMaxHeight;
-            leftListEl.classList.remove('flex-1');
-            rightListEl.classList.remove('flex-1');
-            leftListEl.classList.add('flex-none');
-            rightListEl.classList.add('flex-none');
-        } else {
-            leftListEl.style.maxHeight = '';
-            rightListEl.style.maxHeight = '';
-            leftListEl.classList.remove('flex-none');
-            rightListEl.classList.remove('flex-none');
-            leftListEl.classList.add('flex-1');
-            rightListEl.classList.add('flex-1');
-        }
+        const maxHeight = listsMaxHeight && listsMaxHeight !== 'full' ? listsMaxHeight : '';
+        [leftListEl, rightListEl].forEach(el => {
+            el.style.maxHeight = maxHeight;
+            el.classList.remove('flex-none');
+            el.classList.add('flex-1');
+        });
     } catch (e) {}
 }
 
@@ -438,7 +427,6 @@ resetBtn.addEventListener('click', () => {
 
 
 if (copyLinkBtn) {
-if (copyLinkBtn) {
     copyLinkBtn.addEventListener('click', async () => {
         try {
             await navigator.clipboard.writeText(window.location.href);
@@ -456,7 +444,6 @@ if (copyLinkBtn) {
             document.body.removeChild(textarea);
         }
     });
-}
 }
 
 window.addEventListener('DOMContentLoaded', async () => {

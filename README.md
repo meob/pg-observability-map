@@ -11,7 +11,7 @@ with version-aware filtering and direct links to official documentation.
 
 ## 🌐 Live Dashboard & Usage
 
-Published on GitHub Pages: 👉  **[https://meob.github.io/pg-observability-map/](https://meob.github.io/pg-observability-map/?lists=720&ver=18&mode=hide)**
+Published on GitHub Pages: 👉  **[https://meob.github.io/pg-observability-map/](https://meob.github.io/pg-observability-map/?ver=18&mode=hide)**
 
 Select a view, function, or architectural component,
 hover or click any element to inspect bidirectionally linked PostgreSQL statistics, process roles, and version support.
