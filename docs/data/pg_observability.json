@@ -124,7 +124,8 @@
       "desc": "Physical data relation files, TOAST tables, and tablespace directories.",
       "docsUrl": "https://www.postgresql.org/docs/current/storage-file-layout.html"
     }
-  },  "items": [
+  },
+  "items": [
     {
       "name": "pg_stat_ssl",
       "sinceVersion": "9.5",
@@ -136,6 +137,7 @@
       ],
       "desc": "Shows SSL connection details for active client backends.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-SSL-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_ssl.html",
       "kind": "view"
     },
     {
@@ -150,6 +152,7 @@
       ],
       "desc": "Active backend processes, queries, execution states, and wait events.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_activity.html",
       "kind": "view"
     },
     {
@@ -163,6 +166,7 @@
       ],
       "desc": "Detailed memory context allocations per backend process.",
       "docsUrl": "https://www.postgresql.org/docs/current/view-pg-backend-memory-contexts.html",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_backend_memory_contexts.html",
       "kind": "view"
     },
     {
@@ -176,6 +180,7 @@
       ],
       "desc": "Displays query execution plans and runtime execution metrics.",
       "docsUrl": "https://www.postgresql.org/docs/current/sql-explain.html",
+      "pgpediaUrl": "https://pgpedia.info/e/explain.html",
       "kind": "function"
     },
     {
@@ -189,6 +194,7 @@
       ],
       "desc": "Tracks execution statistics of all SQL statements executed.",
       "docsUrl": "https://www.postgresql.org/docs/current/pgstatstatements.html",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_statements.html",
       "kind": "view",
       "extension": "pgstatstatements"
     },
@@ -202,6 +208,7 @@
       ],
       "desc": "Execution statistics for user-defined SQL/PLpgSQL functions.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-USER-FUNCTIONS-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_user_functions.html",
       "kind": "view"
     },
     {
@@ -215,6 +222,7 @@
       ],
       "desc": "Information on prepared transactions (two-phase commit).",
       "docsUrl": "https://www.postgresql.org/docs/current/view-pg-prepared-xacts.html",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_prepared_xacts.html",
       "kind": "view"
     },
     {
@@ -228,6 +236,7 @@
       ],
       "desc": "Active lock information held or waited on by processes.",
       "docsUrl": "https://www.postgresql.org/docs/current/view-pg-locks.html",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_locks.html",
       "kind": "view"
     },
     {
@@ -241,6 +250,7 @@
       ],
       "desc": "Real-time progress reporting for INDEX creation and REINDEX.",
       "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#CREATE-INDEX-PROGRESS-REPORTING",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_progress_create_index.html",
       "kind": "view"
     },
     {
@@ -253,6 +263,7 @@
       ],
       "desc": "Index usage statistics and index scan counters.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ALL-INDEXES-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_all_indexes.html",
       "kind": "view"
     },
     {
@@ -265,6 +276,7 @@
       ],
       "desc": "Table access statistics (sequential scans, tuple updates, deletes).",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ALL-TABLES-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_all_tables.html",
       "kind": "view"
     },
     {
@@ -278,6 +290,7 @@
       ],
       "desc": "Disk I/O vs buffer cache hits for index blocks.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STATIO-ALL-INDEXES-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_statio_all_indexes.html",
       "kind": "view"
     },
     {
@@ -291,6 +304,7 @@
       ],
       "desc": "Disk I/O vs buffer cache hits for table blocks.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STATIO-ALL-TABLES-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_statio_all_tables.html",
       "kind": "view"
     },
     {
@@ -304,6 +318,7 @@
       ],
       "desc": "Buffer and disk I/O metrics for sequence objects.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STATIO-ALL-SEQUENCES-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_statio_all_sequences.html",
       "kind": "view"
     },
     {
@@ -317,6 +332,7 @@
       ],
       "desc": "Returns true if WAL replay during recovery is currently paused.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-CONTROLS-SIGNAL-TABLE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_is_wal_replay_paused.html",
       "kind": "function"
     },
     {
@@ -329,6 +345,7 @@
       ],
       "desc": "Returns the current WAL write Log Sequence Number (LSN). Renamed from pg_current_xlog_location() in PG10",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-BACKUP",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_current_wal_lsn.html",
       "kind": "function"
     },
     {
@@ -342,6 +359,7 @@
       ],
       "desc": "Calculates byte difference between two LSN positions. Renamed from pg_xlog_location_diff() in PG10",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-BACKUP-TABLE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_wal_lsn_diff.html",
       "kind": "function"
     },
     {
@@ -354,6 +372,7 @@
       ],
       "desc": "Lists files inside the log directory of the PostgreSQL server.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-GENFILE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_ls_logdir.html",
       "kind": "function"
     },
     {
@@ -366,6 +385,7 @@
       ],
       "desc": "Returns path of current log file written by Logger process.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-GENFILE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_current_logfile.html",
       "kind": "function"
     },
     {
@@ -379,6 +399,7 @@
       ],
       "desc": "Status of physical and logical replication slots.",
       "docsUrl": "https://www.postgresql.org/docs/current/view-pg-replication-slots.html",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_replication_slots.html",
       "kind": "view"
     },
     {
@@ -392,6 +413,7 @@
       ],
       "desc": "Performance statistics and spill counters for replication slots.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-REPLICATION-SLOTS-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_replication_slots.html",
       "kind": "view"
     },
     {
@@ -405,6 +427,7 @@
       ],
       "desc": "Real-time monitoring of WAL Sender processes and replication lag.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-REPLICATION-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_replication.html",
       "kind": "view"
     },
     {
@@ -418,6 +441,7 @@
       ],
       "desc": "Subscriber-side metrics for logical replication subscriptions.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-SUBSCRIPTION",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_subscription.html",
       "kind": "view"
     },
     {
@@ -431,6 +455,7 @@
       ],
       "desc": "Error tracking and apply statistics for logical subscriptions.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-SUBSCRIPTION-STATS",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_subscription_stats.html",
       "kind": "view"
     },
     {
@@ -444,6 +469,7 @@
       ],
       "desc": "Real-time status of the active WAL Receiver process.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-WAL-RECEIVER-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_wal_receiver.html",
       "kind": "view"
     },
     {
@@ -456,6 +482,7 @@
       ],
       "desc": "Statistics for the WAL Archiver process operations.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ARCHIVER-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_archiver.html",
       "kind": "view"
     },
     {
@@ -468,6 +495,7 @@
       ],
       "desc": "Lists files in pg_wal/archive_status directory.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-GENFILE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_ls_archive_statusdir.html",
       "kind": "function"
     },
     {
@@ -480,6 +508,7 @@
       ],
       "desc": "Inspects individual buffer headers in Shared Buffers cache.",
       "docsUrl": "https://www.postgresql.org/docs/current/pgbuffercache.html",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_buffercache.html",
       "kind": "view",
       "extension": "pgbuffercache"
     },
@@ -493,6 +522,7 @@
       ],
       "desc": "Detailed WAL activity stats (records, bytes, sync times, write calls).",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-WAL-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_wal.html",
       "kind": "view"
     },
     {
@@ -506,6 +536,7 @@
       ],
       "desc": "Granular I/O statistics broken down by backend, target and operation.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-IO-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_io.html",
       "kind": "view"
     },
     {
@@ -519,6 +550,7 @@
       ],
       "desc": "Fast aggregated summary of Shared Buffers usage states.",
       "docsUrl": "https://www.postgresql.org/docs/current/pgbuffercache.html",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_buffercache.html",
       "kind": "function",
       "extension": "pgbuffercache"
     },
@@ -533,6 +565,7 @@
       ],
       "desc": "Distribution histogram of usage counts for cached blocks.",
       "docsUrl": "https://www.postgresql.org/docs/current/pgbuffercache.html",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_buffercache.html",
       "kind": "function",
       "extension": "pgbuffercache"
     },
@@ -546,6 +579,7 @@
       ],
       "desc": "Dedicated stats view for Checkpointer process activity.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-CHECKPOINTER-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_checkpointer.html",
       "kind": "view"
     },
     {
@@ -559,6 +593,7 @@
       ],
       "desc": "Prefetching performance metrics during WAL recovery.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-RECOVERY-PREFETCH-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_recovery_prefetch.html",
       "kind": "view"
     },
     {
@@ -572,6 +607,7 @@
       ],
       "desc": "Shared memory allocations made by main processes.",
       "docsUrl": "https://www.postgresql.org/docs/current/view-pg-shmem-allocations.html",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_shmem_allocations.html",
       "kind": "view"
     },
     {
@@ -584,6 +620,7 @@
       ],
       "desc": "I/O statistics for Simple LRU (SLRU) caches.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-SLRU-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_slru.html",
       "kind": "view"
     },
     {
@@ -609,6 +646,7 @@
       ],
       "desc": "Database-level metrics (commits, rollbacks, disk reads, tuple counts).",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-DATABASE-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_database.html",
       "kind": "view"
     },
     {
@@ -621,6 +659,7 @@
       ],
       "desc": "Real-time progress reporting for active VACUUM operations.",
       "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#VACUUM-PROGRESS-REPORTING",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_progress_vacuum.html",
       "kind": "view"
     },
     {
@@ -634,6 +673,7 @@
       ],
       "desc": "Real-time progress reporting for active ANALYZE commands.",
       "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#ANALYZE-PROGRESS-REPORTING",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_progress_analyze.html",
       "kind": "view"
     },
     {
@@ -647,6 +687,7 @@
       ],
       "desc": "Real-time progress reporting for active ANALYZE commands.",
       "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#REPACK-PROGRESS-REPORTING",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_progress_repack.html",
       "kind": "view"
     },
     {
@@ -660,6 +701,7 @@
       ],
       "desc": "Lists WAL log files in pg_wal directory.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-GENFILE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_ls_waldir.html",
       "kind": "function"
     },
     {
@@ -672,6 +714,7 @@
       ],
       "desc": "Converts WAL LSN position to corresponding WAL file name.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-BACKUP",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_walfile_name.html",
       "kind": "function"
     },
     {
@@ -685,6 +728,7 @@
       ],
       "desc": "Latest WAL LSN received and flushed by WAL Receiver.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-BACKUP",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_last_wal_receive_lsn.html",
       "kind": "function"
     },
     {
@@ -698,6 +742,7 @@
       ],
       "desc": "Latest WAL LSN replayed during startup/standby recovery.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-BACKUP",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_last_wal_replay_lsn.html",
       "kind": "function"
     },
     {
@@ -711,6 +756,7 @@
       ],
       "desc": "Activity statistics for Background Writer (and Checkpointer pre-PG17).",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-BGWRITER-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_bgwriter.html",
       "kind": "view"
     },
     {
@@ -724,6 +770,7 @@
       ],
       "desc": "Progress monitoring of streaming base backups.",
       "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#BASEBACKUP-PROGRESS-REPORTING",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_progress_basebackup.html",
       "kind": "view"
     },
     {
@@ -737,6 +784,7 @@
       ],
       "desc": "Tuple-level bloat, dead tuple counts, and free space analysis.",
       "docsUrl": "https://www.postgresql.org/docs/current/pgstattuple.html",
+      "pgpediaUrl": "https://pgpedia.info/p/pgstattuple.html",
       "kind": "function",
       "extension": "pgstattuple"
     },
@@ -751,6 +799,7 @@
       ],
       "desc": "Total disk space used by a tablespace.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-DBSIZE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_tablespace_size.html",
       "kind": "function"
     },
     {
@@ -764,6 +813,7 @@
       ],
       "desc": "Total disk space occupied by a database.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-DBSIZE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_database_size.html",
       "kind": "function"
     },
     {
@@ -776,6 +826,7 @@
       ],
       "desc": "Total disk space of a table (including TOAST and indexes).",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-DBSIZE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_total_relation_size.html",
       "kind": "function"
     },
     {
@@ -788,6 +839,7 @@
       ],
       "desc": "Disk size of main table fork file.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-DBSIZE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_relation_size.html",
       "kind": "function"
     },
     {
@@ -801,6 +853,7 @@
       ],
       "desc": "Total disk space occupied by all indexes on a table.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-DBSIZE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_indexes_size.html",
       "kind": "function"
     },
     {
@@ -814,6 +867,7 @@
       ],
       "desc": "Lists temporary files generated during query execution.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-GENFILE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_ls_tmpdir.html",
       "kind": "function"
     },
     {
@@ -827,6 +881,7 @@
       ],
       "desc": "Cluster-wide per-lock-type statistics (waits, wait time, fastpath).",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-LOCK-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_lock.html",
       "kind": "view"
     },
     {

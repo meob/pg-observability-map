@@ -4,14 +4,11 @@ Open roadmap and known issues for the pg-observability-map project.
 
 ## CHANGELOG
 
-- Unreleased (1.0.1) - Desktop viewport auto-fit, metadata cleanup, README link update
+- Unreleased (1.0.1) - Desktop viewport auto-fit, metadata cleanup, pgPedia links, README link update
 - 1.0.0 - 2026-10-31 🎃 Initial release
 
 
 ## Planned
-
-### Data
-- [ ] Add pgPedia links
 
 ### UI/UX (nice to have)
 - [ ] Improve accessibility (keyboard navigation)
@@ -56,6 +53,7 @@ Open roadmap and known issues for the pg-observability-map project.
 - [x] Verify pre-10 entries against official docs (manually verified all the items)
 - [x] Review `pg_statio_*` details
 - [x] Extensions data
+- [x] Add pgPedia links in the detail panel (direct URLs; missing pages omitted)
 
 ### UI/UX (nice to have)
 - [X] Resize item lists

@@ -51,6 +51,7 @@ All views/functions are defined in `docs/data/pg_observability.json`:
 - `sinceVersion`: introduction version (e.g. `9.5`, `14`)
 - `removedVersion`: `null` if still present, set if removed
 - `docsUrl`: link to official docs
+- `pgpediaUrl`: optional link to the pgPedia entry
 - `sections`: links to diagram components
 
 ---
@@ -72,7 +73,7 @@ Umami functions without cookies and processes no personal data, no cookie consen
 
 ### Customizing
 
-Add/edit entries in `docs/data/pg_observability.json`. Keep descriptions short and links to official documentation.
+Add/edit entries in `docs/data/pg_observability.json`. Keep descriptions short and links to official documentation; add a `pgpediaUrl` when a dedicated pgPedia entry exists.
 
 ---
 

@@ -255,13 +255,17 @@ function highlightItem(item) {
         ? `<a href="${docsUrlForBadge}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-sky-400 hover:underline">Introduced in PG ${item.sinceVersion} <i class="fa-solid fa-external-link text-[8px] ml-1"></i></a>`
         : `<span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-sky-400">Introduced in PG ${item.sinceVersion}</span>`;
 
+    const pgpediaBadgeHtml = item.pgpediaUrl
+        ? ` <a href="${item.pgpediaUrl}" target="_blank" rel="noopener noreferrer" title="Open pgPedia entry" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-violet-500/15 text-violet-300 border border-violet-500/30 hover:underline">pgPedia <i class="fa-solid fa-book-open text-[8px] ml-1"></i></a>`
+        : '';
+
     let extensionBadgeHtml = '';
     if (item.extension) {
         const extUrl = `https://www.postgresql.org/docs/${currentTargetVersion}/${item.extension}.html`;
         extensionBadgeHtml = ` <a href="${extUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/40 hover:underline">Requires extension ${item.extension} <i class="fa-solid fa-external-link text-[8px] ml-1"></i></a>`;
     }
     
-    infoTitleEl.innerHTML = `${item.name} ${titleExtra}${extensionBadgeHtml}${item.removedVersion ? ` <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40">REMOVED in ${item.removedVersion}</span>` : ''}`;
+    infoTitleEl.innerHTML = `${item.name} ${titleExtra}${pgpediaBadgeHtml}${extensionBadgeHtml}${item.removedVersion ? ` <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40">REMOVED in ${item.removedVersion}</span>` : ''}`;
     
     let statusText = supported ? 
         `<span class="text-emerald-400 font-medium"><i class="fa-solid fa-circle-check"></i> Available in PG ${currentTargetVersion}</span>` : 
