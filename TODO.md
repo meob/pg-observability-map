@@ -4,6 +4,7 @@ Open roadmap and known issues for the pg-observability-map project.
 
 ## CHANGELOG
 
+- Unreleased (1.0.1) - Desktop viewport auto-fit, metadata cleanup, README link update
 - 1.0.0 - 2026-10-31 🎃 Initial release
 
 
@@ -19,7 +20,7 @@ Open roadmap and known issues for the pg-observability-map project.
 - [ ] Remove CDN (Tailwind CSS)
 
 ### Docs/Deploy
-- [ ] Verify GitHub Pages path matches repo name
+- [ ] Publish 1.0.1 after validation and planned feature additions
 
 
 ## Not planned (for now)
@@ -48,6 +49,8 @@ Open roadmap and known issues for the pg-observability-map project.
 - [X] Empty state message for search/filter
 - [x] Manage Extensions
 - [x] Persist display mode in URL (?mode=dim|hide)
+- [x] Fix charset placement, add meta description, correct JSON-LD language/page URL
+- [x] Remove duplicate code and unused Mermaid references
 
 ### Data
 - [x] Verify pre-10 entries against official docs (manually verified all the items)
@@ -58,6 +61,11 @@ Open roadmap and known issues for the pg-observability-map project.
 - [X] Resize item lists
 - [X] Remove the legend box
 - [X] Remove CDN (Font Awesome, Google Fonts)
+- [x] Auto-fit desktop layout to the viewport at 100% (no browser zoom required)
+- [x] Treat `?lists=` as a maximum height to avoid clipping on short screens
 
 ### Docs/Deploy
 - [x] Add screenshot to README
+- [x] Verify GitHub Pages path matches repo name
+- [x] Enable GitHub Pages from `main` / `docs`
+- [x] Update README live link to avoid a fixed list height
