@@ -28,6 +28,7 @@ Open roadmap and known issues for the pg-observability-map project.
   - CYBERTEC checkpoint internals — https://www.cybertec-postgresql.com/en/postgresql-what-is-a-checkpoint/
   - pg_qualstats — https://github.com/powa-team/pg_qualstats/
   - pg_activity — https://github.com/dalibo/pg_activity
+  - pg_wait_sampling — https://github.com/postgrespro/pg_wait_sampling
 - [ ] Refine Mermaid export generation (improve layout, grouping and readability)
 - [ ] Lightweight diff between two versions (not needed)
 - [ ] Filter "new in selected version" (not needed)

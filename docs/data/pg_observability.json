@@ -168,7 +168,7 @@
       "desc": "Active backend processes, queries, execution states, and wait events.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW",
       "pgpediaUrl": "https://pgpedia.info/p/pg_stat_activity.html",
-      "extraLink": { "label": "pg_wait_sampling", "url": "https://github.com/postgrespro/pg_wait_sampling" },
+      "extraLink": { "label": "How to read the pg2html report", "url": "https://www.meo.bogliolo.name/pub/how-to-read-pg2html.htm" },
       "kind": "view"
     },
     {
