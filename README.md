@@ -1,5 +1,5 @@
 # 🐘 PostgreSQL Observability Architectural Map
-**Version 1.0.0** 🎃 &nbsp; [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+**Version 1.0.1** &nbsp; [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
 Interactive map of PostgreSQL system views, functions, and processes for observability. 
 It shows how `pg_stat_*`, I/O, WAL, replication, autovacuum, and memory components connect,
@@ -22,16 +22,27 @@ hover or click any element to inspect bidirectionally linked PostgreSQL statisti
 - Version filter, with "Highlight" or "Filter" mode
 - Bidirectional linking between architecture cards and system stats
 - Direct links to `postgresql.org/docs` on each item
-- Search across views/functions
+- Optional "Further reading" links for selected items and sections
+- Search across views/functions names and descriptions
 - Deep linking via `?ver=`, `?sel=`, `?mode=` (`dim` or `hide`), and `?lists=` (e.g. `?lists=720`, `?lists=35vh`, or `?lists=full`)
 
 ### How to read
 
-- **Views**: shown in `sky-300` (e.g. `pg_stat_*`), **Functions**: in `emerald-300`
+- **Views**: items shown in `sky-300` (e.g. `pg_stat_*`), **Functions**: items shown in `emerald-300`
 - **NEW in X**: introduced in that PostgreSQL version
 - **REMOVED in X**: removed starting from that version
 - **Lock icon**: not available in the selected target version (use Highlight/Filter mode)
 - **Requires extension**: item comes from an extension (links to its docs)
+- **Further reading**: optional external deep-dive link (label in tooltip)
+
+
+When you select an item, the info panel can show the following information:
+
+![PostgreSQL Observability Map - Items info](docs/pg_obs_item.png)
+
+The item name, when it was introduced, the link to the official documentation for the target version,
+the pgPedia link, the required extension (if any), a short description, whether it is available
+in the target version, and the architectural sections it belongs to.
 
 ---
 
@@ -52,6 +63,7 @@ All views/functions are defined in `docs/data/pg_observability.json`:
 - `removedVersion`: `null` if still present, set if removed
 - `docsUrl`: link to official docs
 - `pgpediaUrl`: optional link to the pgPedia entry
+- `extraLink`: optional `{ "label": "...", "url": "..." }` rendered as a "Further reading" badge (label in tooltip) in the info panel (items and sections)
 - `sections`: links to diagram components
 
 ---

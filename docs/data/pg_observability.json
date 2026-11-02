@@ -1,6 +1,5 @@
 {
   "supportedVersions": [
-    14,
     15,
     16,
     17,
@@ -12,22 +11,26 @@
     "client_backends": {
       "title": "Client Backends",
       "desc": "Dedicated backend processes spawned to serve active client database connections.",
-      "docsUrl": "https://www.postgresql.org/docs/current/connect-estab.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/connect-estab.html",
+      "extraLink": { "label": "Lock monitoring queries", "url": "https://wiki.postgresql.org/wiki/Lock_Monitoring" }
     },
     "query_planning": {
       "title": "Query Planning",
       "desc": "Query optimizer module producing execution plans from parsed SQL.",
-      "docsUrl": "https://www.postgresql.org/docs/current/planner-optimizer.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/planner-optimizer.html",
+      "extraLink": { "label": "Explaining the unexplainable", "url": "https://www.depesz.com/2013/04/16/explaining-the-unexplainable/" }
     },
     "query_execution": {
       "title": "Query Execution",
       "desc": "Executor engine processing plan nodes and allocating work memory.",
-      "docsUrl": "https://www.postgresql.org/docs/current/executor.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/executor.html",
+      "extraLink": { "label": "PostgreSQL 14 Internals", "url": "https://postgrespro.com/community/books/internals" }
     },
     "shared_buffers": {
       "title": "Shared Buffers",
       "desc": "Primary shared memory buffer cache storing database table and index pages.",
-      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-MEMORY"
+      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-MEMORY",
+      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
     },
     "slru_caches": {
       "title": "SLRU Caches",
@@ -37,37 +40,44 @@
     "postmaster": {
       "title": "Postmaster Process",
       "desc": "Master supervisor process handling initialization, authentication, and process forks.",
-      "docsUrl": "https://www.postgresql.org/docs/current/server-start.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/server-start.html",
+      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
     },
     "bg_workers": {
       "title": "Background Workers",
       "desc": "Dynamic background processes executing parallel queries and background tasks.",
-      "docsUrl": "https://www.postgresql.org/docs/current/bgworker.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/bgworker.html",
+      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
     },
     "autovacuum_workers": {
       "title": "Autovacuum",
       "desc": "Processes removing dead tuples and updating table planner statistics.",
-      "docsUrl": "https://www.postgresql.org/docs/current/routine-vacuuming.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/routine-vacuuming.html",
+      "extraLink": { "label": "Tuning autovacuum", "url": "https://www.cybertec-postgresql.com/en/tuning-autovacuum-postgresql/" }
     },
     "indexes_usage": {
       "title": "Indexes Usage",
       "desc": "Index access counters and structural health metrics (B-Tree, GIN, GiST, BRIN).",
-      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html",
+      "extraLink": { "label": "PostgreSQL 14 Internals", "url": "https://postgrespro.com/community/books/internals" }
     },
     "tables_usage": {
       "title": "Tables Usage",
       "desc": "Table access metrics, sequential scan rates, and tuple mutation counters.",
-      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html",
+      "extraLink": { "label": "PostgreSQL 14 Internals", "url": "https://postgrespro.com/community/books/internals" }
     },
     "buffers_io": {
       "title": "Buffer IO & Statistics Subsystem",
       "desc": "Disk I/O subsystem tracking reads, writes, and buffer pool operations (pg_stat_io).",
-      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html",
+      "extraLink": { "label": "EXPLAIN and buffers", "url": "https://www.depesz.com/2021/06/20/explaining-the-unexplainable-part-6-buffers/" }
     },
     "wal": {
       "title": "Write-Ahead Log (WAL)",
       "desc": "Transaction logging engine ensuring ACID durability (pg_stat_wal).",
-      "docsUrl": "https://www.postgresql.org/docs/current/wal-intro.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/wal-intro.html",
+      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
     },
     "logger": {
       "title": "Logger Process",
@@ -77,7 +87,8 @@
     "replication": {
       "title": "Replication",
       "desc": "Publish-subscribe subsystem streaming decoded logical data changes.",
-      "docsUrl": "https://www.postgresql.org/docs/current/logical-replication.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/logical-replication.html",
+      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
     },
     "wal_sender": {
       "title": "WAL Sender Process",
@@ -92,12 +103,14 @@
     "bg_writer": {
       "title": "Background Writer",
       "desc": "Flushes dirty buffers to disk gradually to minimize checkpoint spikes.",
-      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-BACKGROUND-WRITER"
+      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-BACKGROUND-WRITER",
+      "extraLink": { "label": "pg_stat_io for DBAs", "url": "https://pganalyze.com/blog/5mins-postgres-16-pg-stat-io-dba" }
     },
     "checkpointer": {
       "title": "Checkpointer Process",
       "desc": "Creates periodic checkpoints flushing dirty pages to disk (pg_stat_checkpointer).",
-      "docsUrl": "https://www.postgresql.org/docs/current/wal-configuration.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/wal-configuration.html",
+      "extraLink": { "label": "PostgreSQL 14 Internals", "url": "https://postgrespro.com/community/books/internals" }
     },
     "network": {
       "title": "Network Layer",
@@ -117,12 +130,14 @@
     "recovery_process": {
       "title": "Recovery Process",
       "desc": "Replays WAL records during crash recovery or standby replay.",
-      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-wal.html#RUNTIME-CONFIG-WAL-RECOVERY-TARGET"
+      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-wal.html#RUNTIME-CONFIG-WAL-RECOVERY-TARGET",
+      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
     },
     "data_files": {
       "title": "Tables / Indexes Data Files",
       "desc": "Physical data relation files, TOAST tables, and tablespace directories.",
-      "docsUrl": "https://www.postgresql.org/docs/current/storage-file-layout.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/storage-file-layout.html",
+      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
     }
   },
   "items": [
@@ -153,6 +168,7 @@
       "desc": "Active backend processes, queries, execution states, and wait events.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW",
       "pgpediaUrl": "https://pgpedia.info/p/pg_stat_activity.html",
+      "extraLink": { "label": "pg_wait_sampling", "url": "https://github.com/postgrespro/pg_wait_sampling" },
       "kind": "view"
     },
     {
@@ -181,6 +197,7 @@
       "desc": "Displays query execution plans and runtime execution metrics.",
       "docsUrl": "https://www.postgresql.org/docs/current/sql-explain.html",
       "pgpediaUrl": "https://pgpedia.info/e/explain.html",
+      "extraLink": { "label": "PEV2 plan visualizer", "url": "https://explain.dalibo.com/" },
       "kind": "function"
     },
     {
@@ -195,6 +212,7 @@
       "desc": "Tracks execution statistics of all SQL statements executed.",
       "docsUrl": "https://www.postgresql.org/docs/current/pgstatstatements.html",
       "pgpediaUrl": "https://pgpedia.info/p/pg_stat_statements.html",
+      "extraLink": { "label": "pg_stat_kcache", "url": "https://github.com/powa-team/pg_stat_kcache/" },
       "kind": "view",
       "extension": "pgstatstatements"
     },
@@ -237,6 +255,7 @@
       "desc": "Active lock information held or waited on by processes.",
       "docsUrl": "https://www.postgresql.org/docs/current/view-pg-locks.html",
       "pgpediaUrl": "https://pgpedia.info/p/pg_locks.html",
+      "extraLink": { "label": "Lock monitoring queries", "url": "https://wiki.postgresql.org/wiki/Lock_Monitoring" },
       "kind": "view"
     },
     {
@@ -277,6 +296,7 @@
       "desc": "Table access statistics (sequential scans, tuple updates, deletes).",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ALL-TABLES-VIEW",
       "pgpediaUrl": "https://pgpedia.info/p/pg_stat_all_tables.html",
+      "extraLink": { "label": "Tuning autovacuum", "url": "https://www.cybertec-postgresql.com/en/tuning-autovacuum-postgresql/" },
       "kind": "view"
     },
     {
@@ -537,6 +557,7 @@
       "desc": "Granular I/O statistics broken down by backend, target and operation.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-IO-VIEW",
       "pgpediaUrl": "https://pgpedia.info/p/pg_stat_io.html",
+      "extraLink": { "label": "pg_stat_io for DBAs", "url": "https://pganalyze.com/blog/5mins-postgres-16-pg-stat-io-dba" },
       "kind": "view"
     },
     {

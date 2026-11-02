@@ -147,16 +147,13 @@
             box-shadow: -3px 0 0 #38bdf8;
         }
 
-        /* Dynamic Version Badges Colors */
-        .badge-ver-14 { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-        .badge-ver-15 { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-        .badge-ver-16 { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-        .badge-ver-17 { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
-        .badge-ver-18 { background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); }
-        .badge-ver-19 { background: rgba(20, 184, 166, 0.2); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.3); }
-
-        /* Unsupported Version Badges Color */
-        .badge-ver-20 { background: rgba(239, 68,  68, 0.2); color: #f87171; border: 1px solid rgba(239, 68,  68, 0.3); }
+        /* Dynamic Version Badges Colors (cycled by version % 6) */
+        .badge-ver-mod-0 { background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); }
+        .badge-ver-mod-1 { background: rgba(20, 184, 166, 0.2); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.3); }
+        .badge-ver-mod-2 { background: rgba(239, 68,  68, 0.2); color: #f87171; border: 1px solid rgba(239, 68,  68, 0.3); }
+        .badge-ver-mod-3 { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-ver-mod-4 { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .badge-ver-mod-5 { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
     </style>
 </head>
 <body class="min-h-screen lg:h-screen lg:overflow-hidden flex flex-col bg-slate-950 text-slate-100 antialiased selection:bg-sky-500 selection:text-white">
@@ -172,7 +169,7 @@
                     <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
                         PostgreSQL Observability Map
                         <span id="activeVerHeaderBadge" class="text-xs px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/30 font-mono">
-                            v14 ... v19
+                            current
                         </span>
                     </h1>
                     <p class="text-xs text-slate-400">Interactive architectural map of system stats, views & functions</p>
@@ -400,7 +397,7 @@
 
     <!-- Footer -->
     <footer class="shrink-0 border-t border-slate-800 bg-slate-900/50 py-3 text-center text-xs text-slate-500">
-        <p>PostgreSQL Observability Architectural Interactive Map &bull; v.1.0.0 &bull; Source code: <a href="https://github.com/meob/pg-observability-map" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+        <p>PostgreSQL Observability Architectural Interactive Map &bull; v.1.0.1 &bull; Source code: <a href="https://github.com/meob/pg-observability-map" target="_blank" rel="noopener noreferrer">GitHub</a></p>
     </footer>
 
     <script src="js/app.js"></script>

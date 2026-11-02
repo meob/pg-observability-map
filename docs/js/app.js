@@ -2,8 +2,10 @@
  * PostgreSQL Observability Map - Application Script
  */
 
-let PG_SUPPORTED_VERSIONS = [14, 15, 16, 17, 18, 19];
-let DEFAULT_PG_VERSION = 18;
+let PG_SUPPORTED_VERSIONS = [];
+let DEFAULT_PG_VERSION = null;
+let MIN_PG_VERSION = null;
+let MAX_PG_VERSION = null;
 let FUNCS_DATA = [];
 let sectionDescriptions = {};
 
@@ -33,6 +35,12 @@ function isSupportedInVersion(item, ver) {
     if (item.sinceVersion > ver) return false;
     if (item.removedVersion && item.removedVersion <= ver) return false;
     return true;
+}
+
+function renderExtraLink(link) {
+    if (!link || !link.url) return '';
+    const label = link.label || 'Read more';
+    return ` <a href="${link.url}" target="_blank" rel="noopener noreferrer" title="${label}" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 hover:underline">Further reading <i class="fa-solid fa-external-link text-[8px] ml-1"></i></a>`;
 }
 
 function parseDeepLink() {
@@ -97,8 +105,16 @@ function updateDeepLink() {
 async function loadData() {
     const res = await fetch('data/pg_observability.json');
     const data = await res.json();
-    PG_SUPPORTED_VERSIONS = data.supportedVersions || [14, 15, 16, 17, 18, 19];
-    DEFAULT_PG_VERSION = data.defaultVersion || 18;
+    PG_SUPPORTED_VERSIONS = Array.isArray(data.supportedVersions)
+        ? data.supportedVersions.map(Number).filter(Number.isFinite).sort((a, b) => a - b)
+        : [];
+    MIN_PG_VERSION = PG_SUPPORTED_VERSIONS.length ? PG_SUPPORTED_VERSIONS[0] : null;
+    MAX_PG_VERSION = PG_SUPPORTED_VERSIONS.length ? PG_SUPPORTED_VERSIONS[PG_SUPPORTED_VERSIONS.length - 1] : null;
+    const requestedDefault = Number(data.defaultVersion);
+    DEFAULT_PG_VERSION = PG_SUPPORTED_VERSIONS.includes(requestedDefault)
+        ? requestedDefault
+        : MAX_PG_VERSION;
+    currentTargetVersion = DEFAULT_PG_VERSION;
     sectionDescriptions = data.sections || {};
     FUNCS_DATA = (data.items || []).map((it, idx) => ({ ...it, _idx: idx }));
     return data;
@@ -165,9 +181,9 @@ function renderLists() {
 
     let versionBadgeHtml = '';
     const sinceNum = parseFloat(item.sinceVersion);
-    if (!isNaN(sinceNum) && sinceNum >= 14) {
+    if (!isNaN(sinceNum) && MIN_PG_VERSION !== null && sinceNum >= MIN_PG_VERSION) {
         const major = Math.floor(sinceNum);
-        versionBadgeHtml = `<span class="text-[9px] px-1 py-0.2 rounded font-sans font-semibold ml-1 badge-ver-${major}">NEW in ${item.sinceVersion}</span>`;
+        versionBadgeHtml = `<span class="text-[9px] px-1 py-0.2 rounded font-sans font-semibold ml-1 badge-ver-mod-${major % 6}">NEW in ${item.sinceVersion}</span>`;
     }
     if (item.removedVersion) {
         versionBadgeHtml += ` <span class="text-[9px] px-1 py-0.2 rounded font-sans font-semibold ml-1 bg-rose-500/20 text-rose-400 border border-rose-500/40">REMOVED in ${item.removedVersion}</span>`;
@@ -210,7 +226,7 @@ function renderLists() {
     leftCountEl.textContent = `${leftCount} items`;
     rightCountEl.textContent = `${rightCount} items`;
 
-    activeVerHeaderBadgeEl.textContent = `v14 — v${currentTargetVersion}`;
+    activeVerHeaderBadgeEl.textContent = `v${MIN_PG_VERSION} - v${currentTargetVersion}`;
     applyListsHeight();
 }
 
@@ -265,7 +281,8 @@ function highlightItem(item) {
         extensionBadgeHtml = ` <a href="${extUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/40 hover:underline">Requires extension ${item.extension} <i class="fa-solid fa-external-link text-[8px] ml-1"></i></a>`;
     }
     
-    infoTitleEl.innerHTML = `${item.name} ${titleExtra}${pgpediaBadgeHtml}${extensionBadgeHtml}${item.removedVersion ? ` <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40">REMOVED in ${item.removedVersion}</span>` : ''}`;
+    const extraLinkHtml = renderExtraLink(item.extraLink);
+    infoTitleEl.innerHTML = `${item.name} ${titleExtra}${pgpediaBadgeHtml}${extraLinkHtml}${extensionBadgeHtml}${item.removedVersion ? ` <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40">REMOVED in ${item.removedVersion}</span>` : ''}`;
     
     let statusText = supported ? 
         `<span class="text-emerald-400 font-medium"><i class="fa-solid fa-circle-check"></i> Available in PG ${currentTargetVersion}</span>` : 
@@ -316,7 +333,8 @@ function highlightSection(sectionKey) {
         const titleExtra = docsUrlForBadge 
             ? `<a href="${docsUrlForBadge}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-sky-400 hover:underline">View docs <i class="fa-solid fa-external-link text-[8px] ml-1"></i></a>`
             : '';
-        infoTitleEl.innerHTML = `${secInfo.title} ${titleExtra}`;
+        const extraLinkHtml = renderExtraLink(secInfo.extraLink);
+        infoTitleEl.innerHTML = `${secInfo.title} ${titleExtra}${extraLinkHtml}`;
         infoDescEl.innerHTML = `${secInfo.desc || ''}<br/><span class="text-sky-400 font-medium">Related Metrics (${availNames.length}): ${availNames.join(', ')}</span>`;
     }
 }
@@ -451,11 +469,8 @@ if (copyLinkBtn) {
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
-    const selFromLink = parseDeepLink();
     await loadData();
-    if (PG_SUPPORTED_VERSIONS.includes(currentTargetVersion)) {
-        DEFAULT_PG_VERSION = currentTargetVersion;
-    }
+    const selFromLink = parseDeepLink();
     // Ensure default mode UI
     if (displayMode === 'hide') {
         modeHideBtn.classList.add('bg-slate-700', 'text-sky-300');

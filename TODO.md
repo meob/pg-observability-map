@@ -4,7 +4,7 @@ Open roadmap and known issues for the pg-observability-map project.
 
 ## CHANGELOG
 
-- Unreleased (1.0.1) - Desktop viewport auto-fit, metadata cleanup, pgPedia links, README link update
+- Unreleased (1.0.1) - Desktop viewport auto-fit, metadata cleanup, pgPedia links, data-driven version handling, "Further reading" links, README link update
 - 1.0.0 - 2026-10-31 🎃 Initial release
 
 
@@ -21,6 +21,13 @@ Open roadmap and known issues for the pg-observability-map project.
 
 
 ## Not planned (for now)
+- [ ] Additional deep-dive links (candidates excluded from 1.0.1):
+  - explain.depesz.com — https://explain.depesz.com/
+  - pganalyze connection tracing / wait events — https://pganalyze.com/blog/postgres-connection-tracing-wait-event-analysis-and-vacuum-monitoring
+  - CYBERTEC autovacuum monitoring — https://www.cybertec-postgresql.com/en/monitor-autovacuum-my-queries/
+  - CYBERTEC checkpoint internals — https://www.cybertec-postgresql.com/en/postgresql-what-is-a-checkpoint/
+  - pg_qualstats — https://github.com/powa-team/pg_qualstats/
+  - pg_activity — https://github.com/dalibo/pg_activity
 - [ ] Refine Mermaid export generation (improve layout, grouping and readability)
 - [ ] Lightweight diff between two versions (not needed)
 - [ ] Filter "new in selected version" (not needed)
@@ -48,8 +55,10 @@ Open roadmap and known issues for the pg-observability-map project.
 - [x] Persist display mode in URL (?mode=dim|hide)
 - [x] Fix charset placement, add meta description, correct JSON-LD language/page URL
 - [x] Remove duplicate code and unused Mermaid references
+- [x] Data-driven supported/default versions and dynamic version badge colors
 
 ### Data
+- [x] Optional `extraLink` "Further reading" resources for items and sections
 - [x] Verify pre-10 entries against official docs (manually verified all the items)
 - [x] Review `pg_statio_*` details
 - [x] Extensions data
