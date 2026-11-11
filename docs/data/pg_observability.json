@@ -11,8 +11,7 @@
     "client_backends": {
       "title": "Client Backends",
       "desc": "Dedicated backend processes spawned to serve active client database connections.",
-      "docsUrl": "https://www.postgresql.org/docs/current/connect-estab.html",
-      "extraLink": { "label": "Lock monitoring queries", "url": "https://wiki.postgresql.org/wiki/Lock_Monitoring" }
+      "docsUrl": "https://www.postgresql.org/docs/current/connect-estab.html"
     },
     "query_planning": {
       "title": "Query Planning",
@@ -24,13 +23,12 @@
       "title": "Query Execution",
       "desc": "Executor engine processing plan nodes and allocating work memory.",
       "docsUrl": "https://www.postgresql.org/docs/current/executor.html",
-      "extraLink": { "label": "PostgreSQL 14 Internals", "url": "https://postgrespro.com/community/books/internals" }
+      "extraLink": { "label": "Query Processing", "url": "https://www.interdb.jp/pg/pgsql03/01.html" }
     },
     "shared_buffers": {
       "title": "Shared Buffers",
       "desc": "Primary shared memory buffer cache storing database table and index pages.",
-      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-MEMORY",
-      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
+      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-MEMORY"
     },
     "slru_caches": {
       "title": "SLRU Caches",
@@ -41,13 +39,13 @@
       "title": "Postmaster Process",
       "desc": "Master supervisor process handling initialization, authentication, and process forks.",
       "docsUrl": "https://www.postgresql.org/docs/current/server-start.html",
-      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
+      "extraLink": { "label": "Process Architecture", "url": "https://www.interdb.jp/pg/pgsql02/01.html" }
     },
     "bg_workers": {
       "title": "Background Workers",
       "desc": "Dynamic background processes executing parallel queries and background tasks.",
       "docsUrl": "https://www.postgresql.org/docs/current/bgworker.html",
-      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
+      "extraLink": { "label": "Parallel Query", "url": "https://www.interdb.jp/pg/pgsql03/07.html" }
     },
     "autovacuum_workers": {
       "title": "Autovacuum",
@@ -59,17 +57,16 @@
       "title": "Indexes Usage",
       "desc": "Index access counters and structural health metrics (B-Tree, GIN, GiST, BRIN).",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html",
-      "extraLink": { "label": "PostgreSQL 14 Internals", "url": "https://postgrespro.com/community/books/internals" }
+      "extraLink": { "label": "Use The Index, Luke!", "url": "https://use-the-index-luke.com/" }
     },
     "tables_usage": {
       "title": "Tables Usage",
       "desc": "Table access metrics, sequential scan rates, and tuple mutation counters.",
-      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html",
-      "extraLink": { "label": "PostgreSQL 14 Internals", "url": "https://postgrespro.com/community/books/internals" }
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html"
     },
     "buffers_io": {
-      "title": "Buffer IO & Statistics Subsystem",
-      "desc": "Disk I/O subsystem tracking reads, writes, and buffer pool operations (pg_stat_io).",
+      "title": "Buffer IO",
+      "desc": "Buffer and disk I/O subsystem tracking reads, writes, and buffer pool operations (pg_stat_io).",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html",
       "extraLink": { "label": "EXPLAIN and buffers", "url": "https://www.depesz.com/2021/06/20/explaining-the-unexplainable-part-6-buffers/" }
     },
@@ -77,7 +74,7 @@
       "title": "Write-Ahead Log (WAL)",
       "desc": "Transaction logging engine ensuring ACID durability (pg_stat_wal).",
       "docsUrl": "https://www.postgresql.org/docs/current/wal-intro.html",
-      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
+      "extraLink": { "label": "Write-Ahead Logging", "url": "https://www.interdb.jp/pg/pgsql09/01.html" }
     },
     "logger": {
       "title": "Logger Process",
@@ -86,9 +83,9 @@
     },
     "replication": {
       "title": "Replication",
-      "desc": "Publish-subscribe subsystem streaming decoded logical data changes.",
+      "desc": "Streaming Replication and Logical Replication subsystem.",
       "docsUrl": "https://www.postgresql.org/docs/current/logical-replication.html",
-      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
+      "extraLink": { "label": "Monitoring Replication", "url": "https://www.cybertec-postgresql.com/en/monitoring-postgresql-replication/" }
     },
     "wal_sender": {
       "title": "WAL Sender Process",
@@ -103,19 +100,19 @@
     "bg_writer": {
       "title": "Background Writer",
       "desc": "Flushes dirty buffers to disk gradually to minimize checkpoint spikes.",
-      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-BACKGROUND-WRITER",
-      "extraLink": { "label": "pg_stat_io for DBAs", "url": "https://pganalyze.com/blog/5mins-postgres-16-pg-stat-io-dba" }
+      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-BACKGROUND-WRITER"
     },
     "checkpointer": {
       "title": "Checkpointer Process",
       "desc": "Creates periodic checkpoints flushing dirty pages to disk (pg_stat_checkpointer).",
       "docsUrl": "https://www.postgresql.org/docs/current/wal-configuration.html",
-      "extraLink": { "label": "PostgreSQL 14 Internals", "url": "https://postgrespro.com/community/books/internals" }
+      "extraLink": { "label": "PostgreSQL: What is a checkpoint?", "url": "https://www.cybertec-postgresql.com/en/postgresql-what-is-a-checkpoint/" }
     },
     "network": {
       "title": "Network Layer",
       "desc": "TCP/IP or Unix socket interface handling client communications.",
-      "docsUrl": "https://www.postgresql.org/docs/current/connect-estab.html"
+      "docsUrl": "https://www.postgresql.org/docs/current/connect-estab.html",
+      "extraLink": { "label": "Limiting Postgres Connections", "url": "https://www.enterprisedb.com/blog/limiting-postgres-connections" }
     },
     "storage": {
       "title": "Storage System",
@@ -131,13 +128,13 @@
       "title": "Recovery Process",
       "desc": "Replays WAL records during crash recovery or standby replay.",
       "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-wal.html#RUNTIME-CONFIG-WAL-RECOVERY-TARGET",
-      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
+      "extraLink": { "label": "Database Recovery", "url": "https://www.interdb.jp/pg/pgsql09/08.html" }
     },
     "data_files": {
       "title": "Tables / Indexes Data Files",
       "desc": "Physical data relation files, TOAST tables, and tablespace directories.",
       "docsUrl": "https://www.postgresql.org/docs/current/storage-file-layout.html",
-      "extraLink": { "label": "Internals of PostgreSQL", "url": "https://www.interdb.jp/pg/" }
+      "extraLink": { "label": "The physical structure of a database cluster", "url": "https://www.interdb.jp/pg/pgsql01/02.html" }
     }
   },
   "items": [
@@ -156,6 +153,20 @@
       "kind": "view"
     },
     {
+      "name": "pg_stat_gssapi",
+      "sinceVersion": "12",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "client_backends",
+        "network"
+      ],
+      "desc": "GSSAPI authentication, principal, and encryption status per connection.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-GSSAPI-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_gssapi.html",
+      "kind": "view"
+    },
+    {
       "name": "pg_stat_activity",
       "sinceVersion": "7.2",
       "removedVersion": null,
@@ -168,7 +179,6 @@
       "desc": "Active backend processes, queries, execution states, and wait events.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW",
       "pgpediaUrl": "https://pgpedia.info/p/pg_stat_activity.html",
-      "extraLink": { "label": "How to read the pg2html report", "url": "https://www.meo.bogliolo.name/pub/how-to-read-pg2html.htm" },
       "kind": "view"
     },
     {
@@ -212,7 +222,7 @@
       "desc": "Tracks execution statistics of all SQL statements executed.",
       "docsUrl": "https://www.postgresql.org/docs/current/pgstatstatements.html",
       "pgpediaUrl": "https://pgpedia.info/p/pg_stat_statements.html",
-      "extraLink": { "label": "pg_stat_kcache", "url": "https://github.com/powa-team/pg_stat_kcache/" },
+      "extraLink": { "label": "Waiting for pg_stat_statements", "url": "https://www.depesz.com/2009/01/13/waiting-for-84-pg_stat_statements/" },
       "kind": "view",
       "extension": "pgstatstatements"
     },
@@ -227,6 +237,19 @@
       "desc": "Execution statistics for user-defined SQL/PLpgSQL functions.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-USER-FUNCTIONS-VIEW",
       "pgpediaUrl": "https://pgpedia.info/p/pg_stat_user_functions.html",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_xact_user_functions",
+      "sinceVersion": "9.1",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "query_execution"
+      ],
+      "desc": "Execution statistics for user-defined functions within the current transaction.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-STATS-VIEWS-TABLE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_xact_user_functions.html",
       "kind": "view"
     },
     {
@@ -273,6 +296,20 @@
       "kind": "view"
     },
     {
+      "name": "pg_stat_progress_copy",
+      "sinceVersion": "14",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "query_execution",
+        "data_files"
+      ],
+      "desc": "Real-time progress reporting for active COPY commands.",
+      "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#COPY-PROGRESS-REPORTING",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_progress_copy.html",
+      "kind": "view"
+    },
+    {
       "name": "pg_stat_all_indexes",
       "sinceVersion": "7.2",
       "removedVersion": null,
@@ -296,7 +333,20 @@
       "desc": "Table access statistics (sequential scans, tuple updates, deletes).",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ALL-TABLES-VIEW",
       "pgpediaUrl": "https://pgpedia.info/p/pg_stat_all_tables.html",
-      "extraLink": { "label": "Tuning autovacuum", "url": "https://www.cybertec-postgresql.com/en/tuning-autovacuum-postgresql/" },
+      "extraLink": { "label": "Reading a PG assessment report", "url": "https://www.meo.bogliolo.name/pub/how-to-read-pg2html.htm#reading-a-report-during-a-performance-investigation" },
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_xact_all_tables",
+      "sinceVersion": "9.1",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "tables_usage"
+      ],
+      "desc": "Table access statistics accumulated so far within the current transaction.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-STATS-VIEWS-TABLE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_xact_all_tables.html",
       "kind": "view"
     },
     {
@@ -351,8 +401,36 @@
         "recovery_process"
       ],
       "desc": "Returns true if WAL replay during recovery is currently paused.",
-      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-CONTROLS-SIGNAL-TABLE",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-RECOVERY-CONTROL",
       "pgpediaUrl": "https://pgpedia.info/p/pg_is_wal_replay_paused.html",
+      "kind": "function"
+    },
+    {
+      "name": "pg_get_wal_replay_pause_state()",
+      "sinceVersion": "14",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "wal",
+        "recovery_process"
+      ],
+      "desc": "Returns the current recovery pause state: not paused, pause requested, or paused.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-RECOVERY-CONTROL",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_get_wal_replay_pause_state.html",
+      "kind": "function"
+    },
+    {
+      "name": "pg_is_in_recovery()",
+      "sinceVersion": "9.0",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "wal",
+        "recovery_process"
+      ],
+      "desc": "Returns true if crash recovery or standby replay is still in progress.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-RECOVERY-INFO-TABLE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_is_in_recovery.html",
       "kind": "function"
     },
     {
@@ -448,6 +526,20 @@
       "desc": "Real-time monitoring of WAL Sender processes and replication lag.",
       "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-REPLICATION-VIEW",
       "pgpediaUrl": "https://pgpedia.info/p/pg_stat_replication.html",
+      "kind": "view"
+    },
+    {
+      "name": "pg_stat_database_conflicts",
+      "sinceVersion": "9.1",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "replication",
+        "recovery_process"
+      ],
+      "desc": "Database-wide query cancels caused by conflicts on standby servers.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-DATABASE-CONFLICTS-VIEW",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_stat_database_conflicts.html",
       "kind": "view"
     },
     {
@@ -604,6 +696,19 @@
       "kind": "view"
     },
     {
+      "name": "pg_stat_recovery",
+      "sinceVersion": "19",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "recovery_process",
+        "wal"
+      ],
+      "desc": "At most one row showing statistics about the recovery state.",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-RECOVERY-VIEW",
+      "kind": "view"
+    },
+    {
       "name": "pg_stat_recovery_prefetch",
       "sinceVersion": "15",
       "removedVersion": null,
@@ -613,7 +718,7 @@
         "wal"
       ],
       "desc": "Prefetching performance metrics during WAL recovery.",
-      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-RECOVERY-PREFETCH-VIEW",
+      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-RECOVERY-PREFETCH",
       "pgpediaUrl": "https://pgpedia.info/p/pg_stat_recovery_prefetch.html",
       "kind": "view"
     },
@@ -645,16 +750,17 @@
       "kind": "view"
     },
     {
-      "name": "pg_stat_slru_extended",
+      "name": "pg_get_multixact_stats()",
       "sinceVersion": "19",
       "removedVersion": null,
       "side": "right",
       "sections": [
         "slru_caches"
       ],
-      "desc": "Extended hit/miss ratios and access metrics for SLRU caches.",
-      "docsUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-SLRU-VIEW",
-      "kind": "view"
+      "desc": "Returns current multixact usage: ID count, member count, storage size, and oldest MXID.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-info.html#FUNCTIONS-INFO-SNAPSHOT",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_get_multixact_stats.html",
+      "kind": "function"
     },
     {
       "name": "pg_stat_database",
@@ -698,6 +804,19 @@
       "kind": "view"
     },
     {
+      "name": "pg_stat_progress_cluster",
+      "sinceVersion": "12",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "autovacuum_workers",
+        "query_planning"
+      ],
+      "desc": "Progress reporting for active CLUSTER and VACUUM FULL operations.",
+      "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#CLUSTER-PROGRESS-REPORTING",
+      "kind": "view"
+    },
+    {
       "name": "pg_stat_progress_repack",
       "sinceVersion": "19",
       "removedVersion": null,
@@ -706,9 +825,10 @@
         "autovacuum_workers",
         "query_planning"
       ],
-      "desc": "Real-time progress reporting for active ANALYZE commands.",
+      "desc": "Progress reporting for active REPACK, CLUSTER, and VACUUM FULL operations.",
       "docsUrl": "https://www.postgresql.org/docs/current/progress-reporting.html#REPACK-PROGRESS-REPORTING",
       "pgpediaUrl": "https://pgpedia.info/p/pg_stat_progress_repack.html",
+      "extraLink": { "label": "REPACK CONCURRENTLY", "url": "https://www.cybertec-postgresql.com/en/cybertecs-contributions-to-postgresql-19/#the-big-change-repack-concurrently-by-antonin-houska" },
       "kind": "view"
     },
     {
@@ -764,6 +884,20 @@
       "desc": "Latest WAL LSN replayed during startup/standby recovery.",
       "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-BACKUP",
       "pgpediaUrl": "https://pgpedia.info/p/pg_last_wal_replay_lsn.html",
+      "kind": "function"
+    },
+    {
+      "name": "pg_last_xact_replay_timestamp()",
+      "sinceVersion": "9.4",
+      "removedVersion": null,
+      "side": "right",
+      "sections": [
+        "recovery_process",
+        "wal"
+      ],
+      "desc": "Timestamp of the last transaction replayed during recovery.",
+      "docsUrl": "https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-RECOVERY-INFO-TABLE",
+      "pgpediaUrl": "https://pgpedia.info/p/pg_last_xact_replay_timestamp.html",
       "kind": "function"
     },
     {

@@ -3,7 +3,7 @@
 
 Interactive map of PostgreSQL system views, functions, and processes for observability. 
 It shows how `pg_stat_*`, I/O, WAL, replication, autovacuum, and memory components connect,
-with version-aware filtering and direct links to official documentation.
+with version-aware filtering and direct links to official documentation and to pgPedia.
 
 ![PostgreSQL Observability Architectural Map](docs/pg_obs.png)
 
@@ -20,11 +20,12 @@ hover or click any element to inspect bidirectionally linked PostgreSQL statisti
 
 - Interactive diagram of PostgreSQL internals
 - Version filter, with "Highlight" or "Filter" mode
+- Light and dark theme, dark mode by default
 - Bidirectional linking between architecture cards and system stats
-- Direct links to `postgresql.org/docs` on each item
+- Direct links to `postgresql.org/docs` on each item, optionally disabled so items behave like architecture cards
 - Optional "Further reading" links for selected items and sections
 - Search across views/functions names and descriptions
-- Deep linking via `?ver=`, `?sel=`, `?mode=` (`dim` or `hide`), and `?lists=` (e.g. `?lists=720`, `?lists=35vh`, or `?lists=full`)
+- Deep linking via `?ver=`, `?sel=`, `?mode=` (`dim` or `hide`), `?theme=` (`light` or `dark`), `?links=` (`on` or `off`), and `?lists=` (e.g. `?lists=720`, `?lists=35vh`, or `?lists=full`)
 
 ### How to read
 
@@ -41,7 +42,8 @@ When you select an item, the info panel can show the following information:
 ![PostgreSQL Observability Map - Items info](docs/pg_obs_item.png)
 
 The item name, when it was introduced, the link to the official documentation for the target version,
-the pgPedia link, the required extension (if any), a short description, whether it is available
+the pgPedia link, the required extension (if any), an optional further reading link,
+a short description, whether it is available
 in the target version, and the architectural sections it belongs to.
 
 ---
@@ -86,6 +88,16 @@ Umami functions without cookies and processes no personal data, no cookie consen
 ### Customizing
 
 Add/edit entries in `docs/data/pg_observability.json`. Keep descriptions short and links to official documentation; add a `pgpediaUrl` when a dedicated pgPedia entry exists.
+
+---
+
+## 🤝 Contributing & Feedback
+
+The project is currently maintained by a single developer. Bug reports, feature requests,
+and general questions are welcome through the [GitHub repository](https://github.com/meob/pg-observability-map).
+
+When reporting a problem, please include the PostgreSQL version, the browser used, and the
+steps to reproduce it.
 
 ---
 

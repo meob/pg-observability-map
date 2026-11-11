@@ -4,7 +4,7 @@ Open roadmap and known issues for the pg-observability-map project.
 
 ## CHANGELOG
 
-- Unreleased (1.0.1) - Desktop viewport auto-fit, metadata cleanup, pgPedia links, data-driven version handling, "Further reading" links, README link update
+- 1.0.1 - 2026-11-12 Desktop viewport auto-fit, pgPedia links, "Further reading" links, data-driven version handling, light/dark theme, optional item links, docs URL fixes
 - 1.0.0 - 2026-10-31 🎃 Initial release
 
 
@@ -16,24 +16,13 @@ Open roadmap and known issues for the pg-observability-map project.
 - [ ] Consider grouping sidebar by category
 - [ ] Remove CDN (Tailwind CSS)
 
-### Docs/Deploy
-- [ ] Publish 1.0.1 after validation and planned feature additions
-
 
 ## Not planned (for now)
-- [ ] Additional deep-dive links (candidates excluded from 1.0.1):
-  - explain.depesz.com — https://explain.depesz.com/
-  - pganalyze connection tracing / wait events — https://pganalyze.com/blog/postgres-connection-tracing-wait-event-analysis-and-vacuum-monitoring
-  - CYBERTEC autovacuum monitoring — https://www.cybertec-postgresql.com/en/monitor-autovacuum-my-queries/
-  - CYBERTEC checkpoint internals — https://www.cybertec-postgresql.com/en/postgresql-what-is-a-checkpoint/
-  - pg_qualstats — https://github.com/powa-team/pg_qualstats/
-  - pg_activity — https://github.com/dalibo/pg_activity
-  - pg_wait_sampling — https://github.com/postgrespro/pg_wait_sampling
+- [ ] Additional deep-dive links beyond the curated set (see notes below)
 - [ ] Refine Mermaid export generation (improve layout, grouping and readability)
 - [ ] Lightweight diff between two versions (not needed)
 - [ ] Filter "new in selected version" (not needed)
 - [ ] Subtle SVG connectors between diagram and sidebar (not needed)
-- [ ] Light mode (but dark mode is cool)
 - [ ] Add more items (but *Lightness* is important)
 - [ ] Remove some items (but *Completeness* is important too)
 - [ ] Add links to my pages (cool but written in Italian, sorry: it is not a good idea)
@@ -51,7 +40,7 @@ Open roadmap and known issues for the pg-observability-map project.
 - [x] Tooltip for locked/unsupported items
 - [x] Link section names to docs
 - [x] Update footer text to "Source code: GitHub"
-- [X] Empty state message for search/filter
+- [x] Empty state message for search/filter
 - [x] Manage Extensions
 - [x] Persist display mode in URL (?mode=dim|hide)
 - [x] Fix charset placement, add meta description, correct JSON-LD language/page URL
@@ -64,16 +53,64 @@ Open roadmap and known issues for the pg-observability-map project.
 - [x] Review `pg_statio_*` details
 - [x] Extensions data
 - [x] Add pgPedia links in the detail panel (direct URLs; missing pages omitted)
+- [x] Curate further reading links
 
 ### UI/UX (nice to have)
-- [X] Resize item lists
-- [X] Remove the legend box
-- [X] Remove CDN (Font Awesome, Google Fonts)
+- [x] Light/dark theme toggle with `?theme=` deep link (dark by default)
+- [x] Optional item links toggle with `?links=` deep link
+- [x] Resize item lists
+- [x] Remove the legend box
+- [x] Remove CDN (Font Awesome, Google Fonts)
 - [x] Auto-fit desktop layout to the viewport at 100% (no browser zoom required)
 - [x] Treat `?lists=` as a maximum height to avoid clipping on short screens
 
 ### Docs/Deploy
+- [x] Publish 1.0.1 after validation and planned feature additions
 - [x] Add screenshot to README
 - [x] Verify GitHub Pages path matches repo name
 - [x] Enable GitHub Pages from `main` / `docs`
 - [x] Update README live link to avoid a fixed list height
+
+
+### Further reading notes
+
+Added as `extraLink` in the JSON file
+
+Sections:
+- Explaining the unexplainable (`query_planning`)   	https://www.depesz.com/2013/04/16/explaining-the-unexplainable/
+- Query Processing (`query_execution`)   		https://www.interdb.jp/pg/pgsql03/01.html
+- Process Architecture (`postmaster`)   		https://www.interdb.jp/pg/pgsql02/01.html
+- Parallel Query (`bg_workers`)   			https://www.interdb.jp/pg/pgsql03/07.html
+- Tuning autovacuum (`autovacuum_workers`)  		https://www.cybertec-postgresql.com/en/tuning-autovacuum-postgresql/
+- Use The Index, Luke! (`indexes_usage`)		https://use-the-index-luke.com/
+- EXPLAIN and buffers (`buffers_io`)			https://www.depesz.com/2021/06/20/explaining-the-unexplainable-part-6-buffers/
+- Write-Ahead Logging (`wal`)				https://www.interdb.jp/pg/pgsql09/01.html
+- Monitoring PostgreSQL replication (`replication`)	https://www.cybertec-postgresql.com/en/monitoring-postgresql-replication/
+- PostgreSQL: What is a checkpoint? (`checkpointer`)	https://www.cybertec-postgresql.com/en/postgresql-what-is-a-checkpoint/
+- Database Recovery (`recovery_process`)		https://www.interdb.jp/pg/pgsql09/08.html
+- The physical structure of a database (`data_files`)	https://www.interdb.jp/pg/pgsql01/02.html
+- Limiting Postgres Connections (`network`)		https://www.enterprisedb.com/blog/limiting-postgres-connections
+
+Items:
+- PEV2 plan visualizer (`EXPLAIN / EXPLAIN ANALYZE`)	https://explain.dalibo.com/
+- Lock monitoring queries (`pg_locks`)			https://wiki.postgresql.org/wiki/Lock_Monitoring
+- Reading a PG assessment report (`pg_stat_all_tables`)	https://www.meo.bogliolo.name/pub/how-to-read-pg2html.htm#reading-a-report-during-a-performance-investigation
+- pg_stat_io for DBAs (`pg_stat_io`)			https://pganalyze.com/blog/5mins-postgres-16-pg-stat-io-dba
+- Waiting for pg_stat_statements (`pg_stat_statements`)	https://www.depesz.com/2009/01/13/waiting-for-84-pg_stat_statements/
+- REPACK CONCURRENTLY (`pg_stat_progress_repack`) 	https://www.cybertec-postgresql.com/en/cybertecs-contributions-to-postgresql-19/#the-big-change-repack-concurrently-by-antonin-houska
+
+Candidates:
+- Buffer management mechanisms (`shared_buffers`)   	https://www.interdb.jp/pg/pgsql08/04.html
+- HOT updates in PostgreSQL (`tables_usage`)		https://www.cybertec-postgresql.com/en/hot-updates-in-postgresql-for-better-performance/
+- Commit Log (CLOG) (`slru_caches`) 			https://www.interdb.jp/pg/pgsql05/04.html
+- Streaming Replication (`replication`)			https://www.interdb.jp/pg/pgsql11/01.html
+- https://www.cybertec-postgresql.com/en/monitor-autovacuum-my-queries
+- https://www.cybertec-postgresql.com/en/row-locks-in-postgresql/
+- https://www.enterprisedb.com/blog/when-autovacuum-does-not-vacuum
+- https://www.enterprisedb.com/postgres-tutorials/introduction-postgresql-performance-tuning-and-optimization
+- https://pganalyze.com/blog/postgres-in-production-pg-stat-statements-deep-dive-part-4
+- https://www.crunchydata.com/blog/postgres-data-flow
+- https://www.crunchydata.com/blog/the-rest-is-history-investigations-of-wal-history-files
+- https://www.enterprisedb.com/blog/postgresql-vacuum-and-analyze-best-practice-tips
+- https://www.crunchydata.com/blog/exposing-postgres-performance-secrets
+- https://www.enterprisedb.com/blog/postgresql-wal-write-ahead-logging-management-strategy-tradeoffs

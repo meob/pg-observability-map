@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=0.8">
 <meta name="description" content="Interactive architectural map of PostgreSQL observability views, functions, processes, and system statistics.">
+<meta name="theme-color" content="#090d16">
 <!--
   ANALYTICS: If you fork this repository, please remove this script or replace the 'data-website-id' with your own Umami ID.
 -->
@@ -26,7 +27,7 @@
     "url": "https://www.meo.bogliolo.name/about.htm"
   },
   "datePublished": "2026-10-31",
-  "dateModified": "2026-10-31",
+  "dateModified": "2026-11-12",
   "proficiencyLevel": "Advanced",
   "dependencies": "PostgreSQL",
   "mainEntityOfPage": {
@@ -42,6 +43,22 @@
   ],
   "keywords": "PostgreSQL, Architecture, Statistics, Observability, PGstats.dev"
 }
+</script>
+
+<!-- Apply the persisted/requested theme before first paint to avoid a flash -->
+<script>
+    (function () {
+        try {
+            var params = new URLSearchParams(window.location.search);
+            var requested = params.get('theme');
+            var stored = localStorage.getItem('pgobs-theme');
+            var theme = (requested === 'light' || requested === 'dark') ? requested
+                : (stored === 'light' || stored === 'dark' ? stored : 'dark');
+            document.documentElement.classList.toggle('dark', theme === 'dark');
+        } catch (e) {
+            document.documentElement.classList.add('dark');
+        }
+    })();
 </script>
 
 <title>PostgreSQL Observability Architectural Map</title>
@@ -79,10 +96,18 @@
     <link rel="stylesheet" href="vendor/fonts/firacode.css">
     
     <style>
+        :root {
+            --scroll-track: #e2e8f0;
+            --scroll-thumb: #cbd5e1;
+            --scroll-thumb-hover: #94a3b8;
+        }
+        html.dark {
+            --scroll-track: #0f172a;
+            --scroll-thumb: #334155;
+            --scroll-thumb-hover: #475569;
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0b0f19;
-            color: #e2e8f0;
         }
         code, .font-mono {
             font-family: 'Fira Code', monospace;
@@ -94,14 +119,14 @@
             height: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #0f172a;
+            background: var(--scroll-track);
         }
         ::-webkit-scrollbar-thumb {
-            background: #334155;
+            background: var(--scroll-thumb);
             border-radius: 3px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
+            background: var(--scroll-thumb-hover);
         }
 
         /* Interactive highlight styles */
@@ -111,7 +136,7 @@
         }
 
         .arch-card.dimmed {
-            opacity: 0.25;
+            opacity: 0.40;
             filter: grayscale(40%);
         }
 
@@ -128,95 +153,118 @@
         }
 
         .stat-item.dimmed {
-            opacity: 0.2;
+            opacity: 0.4;
         }
 
         .stat-item.disabled-version {
-            opacity: 0.25;
+            opacity: 0.4;
             filter: grayscale(100%);
             pointer-events: auto;
         }
 
         .stat-item.highlighted {
             opacity: 1 !important;
-            background-color: rgba(56, 189, 248, 0.15);
-            border-color: #38bdf8 !important;
-            color: #38bdf8;
+            background-color: rgba(14, 165, 233, 0.12) !important;
+            border-color: #0ea5e9 !important;
+            color: #0369a1 !important;
             font-weight: 600;
             transform: translateX(4px);
+            box-shadow: -3px 0 0 #0ea5e9;
+        }
+        html.dark .stat-item.highlighted {
+            background-color: rgba(56, 189, 248, 0.15) !important;
+            border-color: #38bdf8 !important;
+            color: #38bdf8 !important;
             box-shadow: -3px 0 0 #38bdf8;
         }
 
         /* Dynamic Version Badges Colors (cycled by version % 6) */
-        .badge-ver-mod-0 { background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); }
-        .badge-ver-mod-1 { background: rgba(20, 184, 166, 0.2); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.3); }
-        .badge-ver-mod-2 { background: rgba(239, 68,  68, 0.2); color: #f87171; border: 1px solid rgba(239, 68,  68, 0.3); }
-        .badge-ver-mod-3 { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-        .badge-ver-mod-4 { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-        .badge-ver-mod-5 { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .badge-ver-mod-0 { background: rgba(236, 72, 153, 0.12); color: #be185d; border: 1px solid rgba(236, 72, 153, 0.3); }
+        .badge-ver-mod-1 { background: rgba(20, 184, 166, 0.12); color: #0f766e; border: 1px solid rgba(20, 184, 166, 0.3); }
+        .badge-ver-mod-2 { background: rgba(239, 68,  68, 0.12); color: #b91c1c; border: 1px solid rgba(239, 68,  68, 0.3); }
+        .badge-ver-mod-3 { background: rgba(16, 185, 129, 0.12); color: #047857; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-ver-mod-4 { background: rgba(245, 158, 11, 0.12); color: #b45309; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .badge-ver-mod-5 { background: rgba(168, 85, 247, 0.12); color: #7e22ce; border: 1px solid rgba(168, 85, 247, 0.3); }
+        html.dark .badge-ver-mod-0 { background: rgba(236, 72, 153, 0.2); color: #f472b6; border-color: rgba(236, 72, 153, 0.3); }
+        html.dark .badge-ver-mod-1 { background: rgba(20, 184, 166, 0.2); color: #2dd4bf; border-color: rgba(20, 184, 166, 0.3); }
+        html.dark .badge-ver-mod-2 { background: rgba(239, 68,  68, 0.2); color: #f87171; border-color: rgba(239, 68,  68, 0.3); }
+        html.dark .badge-ver-mod-3 { background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.3); }
+        html.dark .badge-ver-mod-4 { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.3); }
+        html.dark .badge-ver-mod-5 { background: rgba(168, 85, 247, 0.2); color: #c084fc; border-color: rgba(168, 85, 247, 0.3); }
     </style>
 </head>
-<body class="min-h-screen lg:h-screen lg:overflow-hidden flex flex-col bg-slate-950 text-slate-100 antialiased selection:bg-sky-500 selection:text-white">
+<body class="min-h-screen lg:h-screen lg:overflow-hidden flex flex-col bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-sky-500 selection:text-white">
 
     <!-- Header Navigation -->
-    <header class="shrink-0 border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-50">
+    <header class="shrink-0 border-b border-slate-200 bg-white/90 backdrop-blur sticky top-0 z-50 dark:border-slate-800 dark:bg-slate-900/90">
         <div class="max-w-[1750px] mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-                <div class="p-2.5 bg-pgblue-600 rounded-xl text-white shadow-lg shadow-pgblue-900/50">
+                <div class="p-2.5 bg-pgblue-600 rounded-xl text-white shadow-lg shadow-pgblue-900/20 dark:shadow-pgblue-900/50">
                     <i class="fa-solid fa-database text-2xl"></i>
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+                    <h1 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
                         PostgreSQL Observability Map
-                        <span id="activeVerHeaderBadge" class="text-xs px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/30 font-mono">
+                        <span id="activeVerHeaderBadge" class="text-xs px-2 py-0.5 rounded-full bg-sky-100 text-sky-700 border border-sky-300 font-mono dark:bg-sky-500/20 dark:text-sky-300 dark:border-sky-500/30">
                             current
                         </span>
                     </h1>
-                    <p class="text-xs text-slate-400">Interactive architectural map of system stats, views & functions</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Interactive architectural map of system stats, views & functions</p>
                 </div>
             </div>
 
             <!-- Toolbar / Version Select / Controls -->
             <div class="flex flex-wrap items-center gap-3">
                 <!-- Version Selector Dropdown & Mode -->
-                <div class="flex items-center bg-slate-800/90 border border-slate-700 rounded-lg p-1 gap-2">
-                    <label for="versionSelect" class="text-xs font-medium text-slate-300 pl-2 flex items-center gap-1.5">
-                        <i class="fa-solid fa-code-branch text-sky-400"></i> Target Version:
+                <div class="flex items-center bg-slate-100 border border-slate-300 rounded-lg p-1 gap-2 dark:bg-slate-800/90 dark:border-slate-700">
+                    <label for="versionSelect" class="text-xs font-medium text-slate-600 pl-2 flex items-center gap-1.5 dark:text-slate-300">
+                        <i class="fa-solid fa-code-branch text-sky-600 dark:text-sky-400"></i> Target Version:
                     </label>
-                    <select id="versionSelect" class="bg-slate-900 border border-slate-700 text-sky-400 font-mono font-bold text-xs rounded-md px-2.5 py-1 focus:outline-none focus:border-sky-500 cursor-pointer">
+                    <select id="versionSelect" class="bg-white border border-slate-300 text-sky-700 font-mono font-bold text-xs rounded-md px-2.5 py-1 focus:outline-none focus:border-sky-500 cursor-pointer dark:bg-slate-900 dark:border-slate-700 dark:text-sky-400">
                         <!-- Populated dynamically -->
                     </select>
                 </div>
 
                 <!-- Toggle Mode: Hide unsupported vs Dim unsupported -->
-                <div class="flex items-center bg-slate-800/90 border border-slate-700 rounded-lg p-1 text-xs">
-                    <button id="modeDimBtn" class="px-2.5 py-1 rounded-md text-slate-400 hover:text-slate-200 transition-all" title="Dim views not present in selected target version">
+                <div class="flex items-center bg-slate-100 border border-slate-300 rounded-lg p-1 text-xs dark:bg-slate-800/90 dark:border-slate-700">
+                    <button id="modeDimBtn" class="px-2.5 py-1 rounded-md font-medium text-slate-500 transition-all dark:text-slate-400" title="Dim views not present in selected target version" aria-pressed="false">
                         <i class="fa-solid fa-eye-slash text-[11px] mr-1"></i> Highlight Mode
                     </button>
-                    <button id="modeHideBtn" class="px-2.5 py-1 rounded-md text-sky-300 font-medium bg-slate-700 transition-all" title="Completely hide views not present in selected version">
+                    <button id="modeHideBtn" class="px-2.5 py-1 rounded-md font-medium text-slate-500 transition-all dark:text-slate-400" title="Completely hide views not present in selected version" aria-pressed="false">
                         <i class="fa-solid fa-filter text-[11px] mr-1"></i> Filter Mode
                     </button>
                 </div>
 
+                <!-- Item Links Toggle -->
+                <button id="itemLinksBtn" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs text-slate-700 flex items-center gap-1.5 transition-all dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 dark:text-slate-300" title="Disable item links (items select instead of open docs)" aria-label="Disable item links" aria-pressed="true">
+                    <i id="itemLinksIcon" class="fa-solid fa-link"></i> <span id="itemLinksLabel">Links</span>
+                </button>
+
                 <!-- Search Box -->
                 <div class="relative min-w-[220px]">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs dark:text-slate-400"></i>
                     <input type="text" id="searchInput" placeholder="Search pg_stat, function, ..." 
-                        class="w-full pl-8 pr-7 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs focus:outline-none focus:border-sky-500 text-slate-200 placeholder-slate-400 transition-all">
-                    <button id="clearSearch" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs">
+                        class="w-full pl-8 pr-7 py-1.5 bg-white border border-slate-300 rounded-lg text-xs focus:outline-none focus:border-sky-500 text-slate-800 placeholder-slate-400 transition-all dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200">
+                    <button id="clearSearch" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-900 text-xs dark:text-slate-400 dark:hover:text-white">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
 
                 <!-- Reset Highlight Button -->
-                <button id="resetBtn" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-xs text-slate-300 flex items-center gap-1.5 transition-all" title="Reset selection and search">
+                <button id="resetBtn" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs text-slate-700 flex items-center gap-1.5 transition-all dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 dark:text-slate-300" title="Reset selection and search">
                     <i class="fa-solid fa-rotate-left"></i> Reset
                 </button>
 
                 <!-- Copy Link Button -->
-                <button id="copyLinkBtn" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-xs text-slate-300 flex items-center gap-1.5 transition-all" title="Copy deep link to current state">
+                <button id="copyLinkBtn" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs text-slate-700 flex items-center gap-1.5 transition-all dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 dark:text-slate-300" title="Copy deep link to current state">
                     <i class="fa-solid fa-link"></i> Copy link
                 </button>
+
+                <!-- Theme Toggle -->
+                <button id="themeToggleBtn" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs text-slate-700 flex items-center gap-1.5 transition-all dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 dark:text-slate-300" title="Switch to light mode" aria-label="Switch to light mode" aria-pressed="true">
+                    <i class="fa-solid fa-sun"></i> <span id="themeToggleLabel">Light</span>
+                </button>
+
             </div>
         </div>
     </header>
@@ -226,12 +274,12 @@
         
         <!-- Left Sidebar: Functions / Views Part 1 -->
         <aside class="lg:col-span-3 flex flex-col gap-4 order-2 lg:order-1 lg:h-full min-h-0">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex-1 flex flex-col shadow-lg min-h-0 h-full">
-                <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
-                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                        <i class="fa-solid fa-list-check text-sky-400"></i> Client, Query, WAL & Replication
+            <div class="bg-white border border-slate-200 rounded-xl p-3 flex-1 flex flex-col shadow-lg min-h-0 h-full dark:bg-slate-900 dark:border-slate-800">
+                <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-200 dark:border-slate-800">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5 dark:text-slate-400">
+                        <i class="fa-solid fa-list-check text-sky-600 dark:text-sky-400"></i> Client, Query, WAL & Replication
                     </h2>
-                    <span id="leftCount" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">0 items</span>
+                    <span id="leftCount" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400">0 items</span>
                 </div>
                 <div id="leftList" class="space-y-1.5 overflow-y-auto flex-1 min-h-0 pr-1 text-xs">
                     <!-- Populated dynamically -->
@@ -241,15 +289,15 @@
 
         <!-- Center Diagram Area -->
         <section class="lg:col-span-6 flex flex-col gap-3 order-1 lg:order-2 lg:h-full min-h-0">
-            
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 relative shadow-xl overflow-y-auto flex-1 min-h-0">
+
+            <div class="bg-white border border-slate-200 rounded-xl p-4 relative shadow-xl overflow-y-auto flex-1 min-h-0 dark:bg-slate-900 dark:border-slate-800">
                 <!-- Diagram Title Banner -->
-                <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-800/80">
+                <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200 dark:border-slate-800/80">
                     <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-sitemap text-sky-400"></i>
-                        <span class="text-xs font-semibold text-slate-300 uppercase tracking-wider">PostgreSQL Internal Architecture</span>
+                        <i class="fa-solid fa-sitemap text-sky-600 dark:text-sky-400"></i>
+                        <span class="text-xs font-semibold text-slate-700 uppercase tracking-wider dark:text-slate-300">PostgreSQL Internal Architecture</span>
                     </div>
-                    <div class="text-[11px] text-slate-400 italic">
+                    <div class="text-[11px] text-slate-500 italic dark:text-slate-400">
                         <i class="fa-solid fa-hand-pointer mr-1"></i> Hover or click component to highlight metrics
                     </div>
                 </div>
@@ -259,133 +307,133 @@
 
                     <!-- TOP LAYER: Client & Execution -->
                     <div class="col-span-12 md:col-span-5 grid grid-cols-1 gap-2">
-                        <div class="arch-card p-2.5 rounded-lg border bg-amber-950/20 border-amber-500/30 text-amber-200 cursor-pointer text-center font-medium" data-section="client_backends">
-                            <i class="fa-solid fa-users text-amber-400 mr-1.5"></i> Client Backends
+                        <div class="arch-card p-2.5 rounded-lg border bg-amber-100 border-amber-300 text-amber-800 cursor-pointer text-center font-medium dark:bg-amber-950/20 dark:border-amber-500/30 dark:text-amber-200" data-section="client_backends">
+                            <i class="fa-solid fa-users text-amber-500 mr-1.5 dark:text-amber-400"></i> Client Backends
                         </div>
-                        <div class="arch-card p-2.5 rounded-lg border bg-amber-950/20 border-amber-500/30 text-amber-200 cursor-pointer text-center font-medium" data-section="query_planning">
-                            <i class="fa-solid fa-diagram-project text-amber-400 mr-1.5"></i> Query Planning
+                        <div class="arch-card p-2.5 rounded-lg border bg-amber-100 border-amber-300 text-amber-800 cursor-pointer text-center font-medium dark:bg-amber-950/20 dark:border-amber-500/30 dark:text-amber-200" data-section="query_planning">
+                            <i class="fa-solid fa-diagram-project text-amber-500 mr-1.5 dark:text-amber-400"></i> Query Planning
                         </div>
-                        <div class="arch-card p-2.5 rounded-lg border bg-amber-950/20 border-amber-500/30 text-amber-200 cursor-pointer text-center font-medium" data-section="query_execution">
-                            <i class="fa-solid fa-bolt text-amber-400 mr-1.5"></i> Query Execution
+                        <div class="arch-card p-2.5 rounded-lg border bg-amber-100 border-amber-300 text-amber-800 cursor-pointer text-center font-medium dark:bg-amber-950/20 dark:border-amber-500/30 dark:text-amber-200" data-section="query_execution">
+                            <i class="fa-solid fa-bolt text-amber-500 mr-1.5 dark:text-amber-400"></i> Query Execution
                         </div>
                     </div>
 
                     <!-- Shared Buffers & Caches Center Block -->
                     <div class="col-span-12 md:col-span-3 flex flex-col gap-2">
-                        <div class="arch-card flex-1 p-3 rounded-lg border bg-slate-800/80 border-slate-600 text-slate-200 cursor-pointer flex flex-col items-center justify-center text-center font-semibold" data-section="shared_buffers">
-                            <i class="fa-solid fa-memory text-sky-400 text-lg mb-1"></i>
+                        <div class="arch-card flex-1 p-3 rounded-lg border bg-slate-100 border-slate-300 text-slate-700 cursor-pointer flex flex-col items-center justify-center text-center font-semibold dark:bg-slate-800/80 dark:border-slate-600 dark:text-slate-200" data-section="shared_buffers">
+                            <i class="fa-solid fa-memory text-sky-600 text-lg mb-1 dark:text-sky-400"></i>
                             Shared Buffers
                         </div>
-                        <div class="arch-card p-2 rounded-lg border bg-slate-800/60 border-slate-700 text-slate-300 cursor-pointer text-center font-medium text-[11px]" data-section="slru_caches">
+                        <div class="arch-card p-2 rounded-lg border bg-slate-100 border-slate-300 text-slate-700 cursor-pointer text-center font-medium text-[11px] dark:bg-slate-800/60 dark:border-slate-700 dark:text-slate-300" data-section="slru_caches">
                             SLRU Caches
                         </div>
                     </div>
 
                     <!-- Postmaster & Workers Right Block -->
                     <div class="col-span-12 md:col-span-4 grid grid-cols-1 gap-2">
-                        <div class="arch-card p-2 rounded-lg border bg-rose-950/20 border-rose-500/30 text-rose-200 cursor-pointer text-center font-medium" data-section="postmaster">
+                        <div class="arch-card p-2 rounded-lg border bg-rose-100 border-rose-300 text-rose-800 cursor-pointer text-center font-medium dark:bg-rose-950/20 dark:border-rose-500/30 dark:text-rose-200" data-section="postmaster">
                             Postmaster Process
                         </div>
-                        <div class="arch-card p-2 rounded-lg border bg-rose-950/20 border-rose-500/30 text-rose-200 cursor-pointer text-center font-medium" data-section="bg_workers">
+                        <div class="arch-card p-2 rounded-lg border bg-rose-100 border-rose-300 text-rose-800 cursor-pointer text-center font-medium dark:bg-rose-950/20 dark:border-rose-500/30 dark:text-rose-200" data-section="bg_workers">
                             Background Workers
                         </div>
-                        <div class="arch-card p-2 rounded-lg border bg-rose-950/20 border-rose-500/30 text-rose-200 cursor-pointer text-center font-medium" data-section="autovacuum_workers">
+                        <div class="arch-card p-2 rounded-lg border bg-rose-100 border-rose-300 text-rose-800 cursor-pointer text-center font-medium dark:bg-rose-950/20 dark:border-rose-500/30 dark:text-rose-200" data-section="autovacuum_workers">
                             VACUUM
                         </div>
                     </div>
 
                     <!-- MIDDLE LAYER: Buffers IO & Usage -->
                     <div class="col-span-12 grid grid-cols-12 gap-2 mt-1">
-                        <div class="col-span-6 arch-card p-2 rounded-lg border bg-pink-950/20 border-pink-500/30 text-pink-200 cursor-pointer text-center font-medium" data-section="indexes_usage">
+                        <div class="col-span-6 arch-card p-2 rounded-lg border bg-pink-100 border-pink-300 text-pink-800 cursor-pointer text-center font-medium dark:bg-pink-950/20 dark:border-pink-500/30 dark:text-pink-200" data-section="indexes_usage">
                             Indexes Usage
                         </div>
-                        <div class="col-span-6 arch-card p-2 rounded-lg border bg-pink-950/20 border-pink-500/30 text-pink-200 cursor-pointer text-center font-medium" data-section="tables_usage">
+                        <div class="col-span-6 arch-card p-2 rounded-lg border bg-pink-100 border-pink-300 text-pink-800 cursor-pointer text-center font-medium dark:bg-pink-950/20 dark:border-pink-500/30 dark:text-pink-200" data-section="tables_usage">
                             Tables Usage
                         </div>
                     </div>
 
-                    <div class="col-span-12 arch-card p-2.5 rounded-lg border bg-pink-950/30 border-pink-500/40 text-pink-200 cursor-pointer text-center font-semibold flex flex-wrap items-center justify-center gap-2" data-section="buffers_io">
-                        <i class="fa-solid fa-hard-drive text-pink-400"></i> Buffer IO & Statistics Subsystem
+                    <div class="col-span-12 arch-card p-2.5 rounded-lg border bg-pink-100 border-pink-300 text-pink-800 cursor-pointer text-center font-semibold flex flex-wrap items-center justify-center gap-2 dark:bg-pink-950/30 dark:border-pink-500/40 dark:text-pink-200" data-section="buffers_io">
+                        <i class="fa-solid fa-hard-drive text-pink-500 dark:text-pink-400"></i> Buffer IO
                     </div>
 
                     <!-- WAL SECTION -->
-                    <div class="col-span-12 arch-card p-2.5 rounded-lg border bg-lime-950/20 border-lime-500/40 text-lime-200 cursor-pointer text-center font-bold tracking-wide flex items-center justify-center gap-2" data-section="wal">
-                        <i class="fa-solid fa-file-lines text-lime-400"></i> Write-Ahead Log (WAL)
+                    <div class="col-span-12 arch-card p-2.5 rounded-lg border bg-lime-100 border-lime-300 text-lime-800 cursor-pointer text-center font-bold tracking-wide flex items-center justify-center gap-2 dark:bg-lime-950/20 dark:border-lime-500/40 dark:text-lime-200" data-section="wal">
+                        <i class="fa-solid fa-file-lines text-lime-600 dark:text-lime-400"></i> Write-Ahead Log (WAL)
                     </div>
 
-                    <div class="col-span-12 arch-card p-2 rounded-lg border bg-sky-950/20 border-sky-500/30 text-sky-200 cursor-pointer text-center font-medium" data-section="logger">
+                    <div class="col-span-12 arch-card p-2 rounded-lg border bg-sky-100 border-sky-300 text-sky-800 cursor-pointer text-center font-medium dark:bg-sky-950/20 dark:border-sky-500/30 dark:text-sky-200" data-section="logger">
                         Logger Process
                     </div>
 
                     <!-- REPLICATION & BACKGROUND WRITERS -->
                     <div class="col-span-12 grid grid-cols-12 gap-2">
-                        <div class="col-span-12 md:col-span-4 arch-card p-2 rounded-lg border bg-teal-950/20 border-teal-500/30 text-teal-200 cursor-pointer text-center font-medium" data-section="replication">
+                        <div class="col-span-12 md:col-span-4 arch-card p-2 rounded-lg border bg-teal-100 border-teal-300 text-teal-800 cursor-pointer text-center font-medium dark:bg-teal-950/20 dark:border-teal-500/30 dark:text-teal-200" data-section="replication">
                            Replication
                         </div>
-                        <div class="col-span-6 md:col-span-4 arch-card p-2 rounded-lg border bg-teal-950/20 border-teal-500/30 text-teal-200 cursor-pointer text-center font-medium" data-section="wal_sender">
+                        <div class="col-span-6 md:col-span-4 arch-card p-2 rounded-lg border bg-teal-100 border-teal-300 text-teal-800 cursor-pointer text-center font-medium dark:bg-teal-950/20 dark:border-teal-500/30 dark:text-teal-200" data-section="wal_sender">
                             WAL Sender
                         </div>
-                        <div class="col-span-6 md:col-span-4 arch-card p-2 rounded-lg border bg-teal-950/20 border-teal-500/30 text-teal-200 cursor-pointer text-center font-medium" data-section="wal_archiver">
+                        <div class="col-span-6 md:col-span-4 arch-card p-2 rounded-lg border bg-teal-100 border-teal-300 text-teal-800 cursor-pointer text-center font-medium dark:bg-teal-950/20 dark:border-teal-500/30 dark:text-teal-200" data-section="wal_archiver">
                             WAL Archiver
                         </div>
                     </div>
 
                     <div class="col-span-12 grid grid-cols-2 gap-2">
-                        <div class="arch-card p-2 rounded-lg border bg-indigo-950/20 border-indigo-500/30 text-indigo-200 cursor-pointer text-center font-medium" data-section="bg_writer">
+                        <div class="arch-card p-2 rounded-lg border bg-indigo-100 border-indigo-300 text-indigo-800 cursor-pointer text-center font-medium dark:bg-indigo-950/20 dark:border-indigo-500/30 dark:text-indigo-200" data-section="bg_writer">
                             Background Writer
                         </div>
-                        <div class="arch-card p-2 rounded-lg border bg-indigo-950/20 border-indigo-500/30 text-indigo-200 cursor-pointer text-center font-medium" data-section="checkpointer">
+                        <div class="arch-card p-2 rounded-lg border bg-indigo-100 border-indigo-300 text-indigo-800 cursor-pointer text-center font-medium dark:bg-indigo-950/20 dark:border-indigo-500/30 dark:text-indigo-200" data-section="checkpointer">
                             Checkpointer Process
                         </div>
                     </div>
 
                     <!-- NETWORK & RECOVERY -->
                     <div class="col-span-12 grid grid-cols-2 gap-2">
-                        <div class="arch-card p-2 rounded-lg border bg-slate-800 border-slate-700 text-slate-300 cursor-pointer text-center font-medium" data-section="network">
+                        <div class="arch-card p-2 rounded-lg border bg-slate-100 border-slate-300 text-slate-700 cursor-pointer text-center font-medium dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300" data-section="network">
                             Network Layer
                         </div>
-                        <div class="arch-card p-2 rounded-lg border bg-slate-800 border-slate-700 text-slate-300 cursor-pointer text-center font-medium" data-section="storage">
+                        <div class="arch-card p-2 rounded-lg border bg-slate-100 border-slate-300 text-slate-700 cursor-pointer text-center font-medium dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300" data-section="storage">
                             Storage System
                         </div>
                     </div>
 
                     <div class="col-span-12 grid grid-cols-2 gap-2">
-                        <div class="arch-card p-2 rounded-lg border bg-cyan-950/20 border-cyan-500/30 text-cyan-200 cursor-pointer text-center font-medium" data-section="wal_receiver">
+                        <div class="arch-card p-2 rounded-lg border bg-cyan-100 border-cyan-300 text-cyan-800 cursor-pointer text-center font-medium dark:bg-cyan-950/20 dark:border-cyan-500/30 dark:text-cyan-200" data-section="wal_receiver">
                             WAL Receiver Process
                         </div>
-                        <div class="arch-card p-2 rounded-lg border bg-cyan-950/20 border-cyan-500/30 text-cyan-200 cursor-pointer text-center font-medium" data-section="recovery_process">
+                        <div class="arch-card p-2 rounded-lg border bg-cyan-100 border-cyan-300 text-cyan-800 cursor-pointer text-center font-medium dark:bg-cyan-950/20 dark:border-cyan-500/30 dark:text-cyan-200" data-section="recovery_process">
                             Recovery Process
                         </div>
                     </div>
 
                     <!-- STORAGE FILES -->
-                    <div class="col-span-12 arch-card p-3 rounded-lg border bg-emerald-950/20 border-emerald-500/40 text-emerald-200 cursor-pointer text-center font-semibold flex items-center justify-center gap-2" data-section="data_files">
-                        <i class="fa-solid fa-database text-emerald-400"></i> Tables / Indexes Data Files & Tablespaces
+                    <div class="col-span-12 arch-card p-3 rounded-lg border bg-emerald-100 border-emerald-300 text-emerald-800 cursor-pointer text-center font-semibold flex items-center justify-center gap-2 dark:bg-emerald-950/20 dark:border-emerald-500/40 dark:text-emerald-200" data-section="data_files">
+                        <i class="fa-solid fa-database text-emerald-600 dark:text-emerald-400"></i> Tables / Indexes Data Files & Tablespaces
                     </div>
 
                 </div>
             </div>
 
             <!-- Detail Info Panel -->
-            <div id="infoPanel" class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex items-start gap-3 text-xs h-[84px] min-h-[84px] overflow-y-auto shadow-lg shrink-0">
-                <div class="p-2 rounded-lg bg-slate-800 text-sky-400 mt-0.5">
+            <div id="infoPanel" class="bg-white border border-slate-200 rounded-xl p-3 flex items-start gap-3 text-xs h-[84px] min-h-[84px] overflow-y-auto shadow-lg shrink-0 dark:bg-slate-900 dark:border-slate-800">
+                <div class="p-2 rounded-lg bg-slate-100 text-sky-600 mt-0.5 dark:bg-slate-800 dark:text-sky-400">
                     <i class="fa-solid fa-circle-info text-base"></i>
                 </div>
                 <div class="flex-1 min-w-0">
-                    <h3 id="infoTitle" class="font-bold text-slate-200">Select a view, function, or architectural component</h3>
-                    <p id="infoDesc" class="text-slate-400 mt-0.5">Hover or click any element to inspect bidirectionally linked PostgreSQL statistics, process roles, and version support.</p>
+                    <h3 id="infoTitle" class="font-bold text-slate-800 dark:text-slate-200">Select a view, function, or architectural component</h3>
+                    <p id="infoDesc" class="text-slate-600 mt-0.5 dark:text-slate-400">Hover or click any element to inspect bidirectionally linked PostgreSQL statistics, process roles, and version support.</p>
                 </div>
             </div>
         </section>
 
         <!-- Right Sidebar: Functions / Views Part 2 -->
         <aside class="lg:col-span-3 flex flex-col gap-4 order-3 lg:h-full min-h-0">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex-1 flex flex-col shadow-lg min-h-0 h-full">
-                <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
-                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                        <i class="fa-solid fa-list-check text-purple-400"></i> Memory, Buffers, Storage & Metrics
+            <div class="bg-white border border-slate-200 rounded-xl p-3 flex-1 flex flex-col shadow-lg min-h-0 h-full dark:bg-slate-900 dark:border-slate-800">
+                <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-200 dark:border-slate-800">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5 dark:text-slate-400">
+                        <i class="fa-solid fa-list-check text-purple-600 dark:text-purple-400"></i> Memory, Buffers, Storage & Metrics
                     </h2>
-                    <span id="rightCount" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">0 items</span>
+                    <span id="rightCount" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400">0 items</span>
                 </div>
                 <div id="rightList" class="space-y-1.5 overflow-y-auto flex-1 min-h-0 pr-1 text-xs">
                     <!-- Populated dynamically -->
@@ -396,7 +444,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="shrink-0 border-t border-slate-800 bg-slate-900/50 py-3 text-center text-xs text-slate-500">
+    <footer class="shrink-0 border-t border-slate-200 bg-white/60 py-3 text-center text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900/50">
         <p>PostgreSQL Observability Architectural Interactive Map &bull; v.1.0.1 &bull; Source code: <a href="https://github.com/meob/pg-observability-map" target="_blank" rel="noopener noreferrer">GitHub</a></p>
     </footer>
 
