@@ -28,7 +28,8 @@
     "shared_buffers": {
       "title": "Shared Buffers",
       "desc": "Primary shared memory buffer cache storing database table and index pages.",
-      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-MEMORY"
+      "docsUrl": "https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-MEMORY",
+      "extraLink": { "label": "Tuning shared_buffers and wal_buffers", "url": "https://rhaas.blogspot.com/2012/03/tuning-sharedbuffers-and-walbuffers.html" }
     },
     "slru_caches": {
       "title": "SLRU Caches",
@@ -225,6 +226,34 @@
       "extraLink": { "label": "Waiting for pg_stat_statements", "url": "https://www.depesz.com/2009/01/13/waiting-for-84-pg_stat_statements/" },
       "kind": "view",
       "extension": "pgstatstatements"
+    },
+    {
+      "name": "pg_get_advice_stashes()",
+      "sinceVersion": "19",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "query_planning"
+      ],
+      "desc": "Lists plan-advice stashes stored in shared memory with their entry counts.",
+      "docsUrl": "https://www.postgresql.org/docs/current/pgstashadvice.html",
+      "extraLink": { "label": "pg_plan_advice: plan stability", "url": "https://rhaas.blogspot.com/2026/03/pgplanadvice-plan-stability-and-user.html#more" },
+      "kind": "function",
+      "extension": "pgstashadvice"
+    },
+    {
+      "name": "pg_get_advice_stash_contents()",
+      "sinceVersion": "19",
+      "removedVersion": null,
+      "side": "left",
+      "sections": [
+        "query_planning",
+        "query_execution"
+      ],
+      "desc": "Shows the query ID to plan-advice string mappings in one or all stashes.",
+      "docsUrl": "https://www.postgresql.org/docs/current/pgstashadvice.html",
+      "kind": "function",
+      "extension": "pgstashadvice"
     },
     {
       "name": "pg_stat_user_functions",

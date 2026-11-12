@@ -79,6 +79,7 @@ Added as `extraLink` in the JSON file
 Sections:
 - Explaining the unexplainable (`query_planning`)   	https://www.depesz.com/2013/04/16/explaining-the-unexplainable/
 - Query Processing (`query_execution`)   		https://www.interdb.jp/pg/pgsql03/01.html
+- Tuning shared_buffers and wal_buffers (`shared_buffers`)	https://rhaas.blogspot.com/2012/03/tuning-sharedbuffers-and-walbuffers.html
 - Process Architecture (`postmaster`)   		https://www.interdb.jp/pg/pgsql02/01.html
 - Parallel Query (`bg_workers`)   			https://www.interdb.jp/pg/pgsql03/07.html
 - Tuning autovacuum (`autovacuum_workers`)  		https://www.cybertec-postgresql.com/en/tuning-autovacuum-postgresql/
@@ -98,6 +99,7 @@ Items:
 - pg_stat_io for DBAs (`pg_stat_io`)			https://pganalyze.com/blog/5mins-postgres-16-pg-stat-io-dba
 - Waiting for pg_stat_statements (`pg_stat_statements`)	https://www.depesz.com/2009/01/13/waiting-for-84-pg_stat_statements/
 - REPACK CONCURRENTLY (`pg_stat_progress_repack`) 	https://www.cybertec-postgresql.com/en/cybertecs-contributions-to-postgresql-19/#the-big-change-repack-concurrently-by-antonin-houska
+- pg_plan_advice: plan stability (`pg_get_advice_stashes()`)	https://rhaas.blogspot.com/2026/03/pgplanadvice-plan-stability-and-user.html#more
 
 Candidates:
 - Buffer management mechanisms (`shared_buffers`)   	https://www.interdb.jp/pg/pgsql08/04.html
@@ -114,3 +116,4 @@ Candidates:
 - https://www.enterprisedb.com/blog/postgresql-vacuum-and-analyze-best-practice-tips
 - https://www.crunchydata.com/blog/exposing-postgres-performance-secrets
 - https://www.enterprisedb.com/blog/postgresql-wal-write-ahead-logging-management-strategy-tradeoffs
+- https://www.snowflake.com/en/blog/engineering/30-years-of-postgres-architecture-tom-lane/#memory-model

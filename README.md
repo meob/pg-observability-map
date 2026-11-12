@@ -65,7 +65,7 @@ All views/functions are defined in `docs/data/pg_observability.json`:
 - `removedVersion`: `null` if still present, set if removed
 - `docsUrl`: link to official docs
 - `pgpediaUrl`: optional link to the pgPedia entry
-- `extraLink`: optional `{ "label": "...", "url": "..." }` rendered as a "Further reading" badge (label in tooltip) in the info panel (items and sections)
+- `extraLink`: optional link rendered as a "Further reading" badge in the info panel (items and sections)
 - `sections`: links to diagram components
 
 ---
@@ -93,17 +93,16 @@ Add/edit entries in `docs/data/pg_observability.json`. Keep descriptions short a
 
 ## 🤝 Contributing & Feedback
 
-The project is currently maintained by a single developer. Bug reports, feature requests,
+Bug reports, feature requests,
 and general questions are welcome through the [GitHub repository](https://github.com/meob/pg-observability-map).
 
-When reporting a problem, please include the PostgreSQL version, the browser used, and the
-steps to reproduce it.
+When reporting a problem, please include the browser used, and the steps to reproduce it.
 
 ---
 
 ## 🧠 Development Notes
 
-Concept inspired by Alexey Lesovsky's pgstats.dev
+Concept inspired by Alexey Lesovsky's pgstats.dev.
 
 This project was developed through iterative collaboration with generative AI tools. AI assistance was used for implementation, refactoring, and debugging, while overall design decisions, customization, validation, and final integration were performed by the author.
 
